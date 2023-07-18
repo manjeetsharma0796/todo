@@ -1,4 +1,6 @@
 const getTodoContainer = () => document.querySelector('#todo-list');
+const getAddTaskElement = () => document.querySelector('#add-task');
+const getTaskDetailElement = () => document.querySelector('#task-details');
 
 const removeAllChild = (element) => {
   while (element.firstChild) {
@@ -18,20 +20,18 @@ const appendTodo = (container, todoElements) => {
   });
 };
 
+const readTask = () => {
+  const taskDetailsElement = getTaskDetailElement();
+  return taskDetailsElement.value;
+}
+
 const main = () => {
   const todoListContainer = getTodoContainer();
-  const todoList = ['Buy eggs from supermarket.',
-    'Finish Code Of Conduct training on campus.',
-    'Finish day 15 part 2 of Advent of Code problem.'];
+  const addTask = getAddTaskElement();
 
-  removeAllChild(todoListContainer);
-
-  const todoElements = todoList.map((todo) => {
-    return createTodoElement(todo);
-  });
-
-  appendTodo(todoListContainer, todoElements);
+  addTask.onclick = () => {
+    readTask();
+  };
 };
 
-window.onload = () => {
-};
+window.onload = main;
