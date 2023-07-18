@@ -24,15 +24,17 @@ const readTaskAndRemoveValue = () => {
   const taskDetailsElement = getTaskDetailElement();
   const taskDetail = taskDetailsElement.value;
   taskDetailsElement.value = '';
+
   return taskDetail;
-}
+};
 
 const readCreateAndAppendTask = () => {
   const todoListContainer = getTodoContainer();
   const task = readTaskAndRemoveValue();
   const taskElement = createTodoElement(task);
   todoListContainer.append(taskElement);
-}
+};
+
 const main = () => {
   const todoListContainer = getTodoContainer();
   const addTask = getAddTaskElement();
