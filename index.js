@@ -24,15 +24,14 @@ const main = () => {
     'Finish Code Of Conduct training on campus.',
     'Finish day 15 part 2 of Advent of Code problem.'];
 
-
   removeAllChild(todoListContainer);
   const todoElements = todoList.map((todo) => {
-    return createTodoElement(todo);
+     return createTodoElement(todo);
   })
 
   appendTodo(todoListContainer, todoElements);
-};
+}
 
 window.onload = () => {
-  main();
+  // main();
 };
