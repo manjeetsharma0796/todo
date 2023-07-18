@@ -15,14 +15,29 @@ body {
   align-items: flex-start;
 }
 
+.heading {
+  width: 80%;
+  height: 5%;
+}
+
+h1 {
+  font-size: 2em;
+}
+
 #input-section {
   display: flex;
-  flex-flow: column wrap;
-  border: 1px solid red;
-  height: 90%;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  border: 1px solid rgb(0, 0, 0);
+  height: 70px;
+  width: 100%;
+  row-gap: 2em;
 }
 
 #task-details {
-  height: 100%;
-  width: 150%;
+  height: 50px;
+}
+
+#add-task {
+  height: 50px;
 }
