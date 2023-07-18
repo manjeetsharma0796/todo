@@ -25,12 +25,13 @@ const main = () => {
     'Finish day 15 part 2 of Advent of Code problem.'];
 
   removeAllChild(todoListContainer);
+
   const todoElements = todoList.map((todo) => {
-     return createTodoElement(todo);
-  })
+    return createTodoElement(todo);
+  });
 
   appendTodo(todoListContainer, todoElements);
-}
+};
 
 window.onload = () => {
 };
