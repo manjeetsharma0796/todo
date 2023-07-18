@@ -28,15 +28,21 @@ const readTaskAndRemoveValue = () => {
   return taskDetail;
 };
 
+const addClickEvent = (taskElement) => {
+  taskElement.onclick = () => {
+
+  }
+};
+
 const readCreateAndAppendTask = () => {
   const todoListContainer = getTodoContainer();
   const task = readTaskAndRemoveValue();
   const taskElement = createTodoElement(task);
+  addClickEvent(taskElement);
   todoListContainer.append(taskElement);
 };
 
 const main = () => {
-  const todoListContainer = getTodoContainer();
   const addTask = getAddTaskElement();
 
   addTask.onclick = () => {
