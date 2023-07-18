@@ -30,7 +30,11 @@ const readTaskAndRemoveValue = () => {
 
 const addClickEvent = (taskElement) => {
   taskElement.onclick = () => {
-
+    taskElement.classList.add('yellow-bg');
+    taskElement.onclick = () => {
+      taskElement.classList.remove('yellow-bg');
+      taskElement.classList.add('white');
+    }
   }
 };
 
