@@ -49,3 +49,8 @@ h1 {
 .task-list {
   margin: 1em 2em;
 }
+
+.marked {
+  text-decoration: line-through;
+}
+

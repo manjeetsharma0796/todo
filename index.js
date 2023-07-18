@@ -8,50 +8,42 @@ const removeAllChild = (element) => {
   }
 };
 
-const createTodoElement = (todoText) => {
-  const todoNode = document.createElement('p');
-  todoNode.innerText = todoText;
-  return todoNode;
+const createTaskElement = (taskText) => {
+  const taskElement = document.createElement('p');
+  taskElement.innerText = taskText;
+  return taskElement;
 };
 
-const appendTodo = (container, todoElements) => {
-  todoElements.forEach(todoElement => {
-    container.appendChild(todoElement);
+const appendTask = (container, taskElements) => {
+  taskElements.forEach(taskElement => {
+    container.appendChild(taskElement);
   });
 };
 
-const readTaskAndRemoveValue = () => {
-  const taskDetailsElement = getTaskDetailElement();
-  const taskDetail = taskDetailsElement.value;
-  taskDetailsElement.value = '';
+const readTask = (taskDetailsElement) => taskDetailsElement.value;
 
-  return taskDetail;
-};
+const removeValue = (element) => element.value = '';
 
 const addClickEvent = (taskElement) => {
   taskElement.onclick = () => {
-    taskElement.classList.add('yellow-bg');
-    taskElement.onclick = () => {
-      taskElement.classList.remove('yellow-bg');
-      taskElement.classList.add('white');
-    }
+    taskElement.classList.add('marked');
   }
-};
-
-const readCreateAndAppendTask = () => {
-  const todoListContainer = getTodoContainer();
-  const task = readTaskAndRemoveValue();
-  const taskElement = createTodoElement(task);
-  addClickEvent(taskElement);
-  todoListContainer.append(taskElement);
 };
 
 const main = () => {
   const addTask = getAddTaskElement();
+  const todoListContainer = getTodoContainer();
+  const taskDetailsElement = getTaskDetailElement();
 
-  addTask.onclick = () => {
-    readCreateAndAppendTask();
+  const onNewTask = () => {
+    const task = readTask(taskDetailsElement);
+    removeValue(taskDetailsElement);
+    const taskElement = createTaskElement(task);
+    addClickEvent(taskElement);
+    todoListContainer.append(taskElement);
   };
+
+  addTask.onclick = onNewTask;
 };
 
 window.onload = main;
