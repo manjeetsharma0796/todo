@@ -25,12 +25,18 @@ const readTask = () => {
   return taskDetailsElement.value;
 }
 
+const readCreateAndAppendTask = () => {
+  const todoListContainer = getTodoContainer();
+  const task = readTask();
+  const taskElement = createTodoElement(task);
+  todoListContainer.append(taskElement);
+}
 const main = () => {
   const todoListContainer = getTodoContainer();
   const addTask = getAddTaskElement();
 
   addTask.onclick = () => {
-    readTask();
+    readCreateAndAppendTask();
   };
 };
 
