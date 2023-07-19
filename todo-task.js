@@ -1,6 +1,6 @@
-const createTaskElement = (name) => {
+const createTaskElement = (description) => {
   const taskElement = document.createElement("p");
-  taskElement.innerText = name;
+  taskElement.innerText = description;
   return taskElement;
 };
 
@@ -22,12 +22,12 @@ class Task {
     this.#task = [];
   }
 
-  addTask(name) {
-    this.#task.push({ name, taskCompleted: false });
+  addTask(description) {
+    this.#task.push({ description, taskCompleted: false });
   }
 
   sortAlphabetical() {
-    this.#task.sort((task1, task2) => task1.name < task2.name ? -1 : 1);
+    this.#task.sort((task1, task2) => task1.description < task2.description ? -1 : 1);
   }
 
   get allTask() {
@@ -58,8 +58,8 @@ const main = () => {
 
     tasks.sortAlphabetical();
     tasks.allTask.forEach(task => {
-      const { name, _ } = task;
-      const taskElement = createTaskElement(name);
+      const { description, _ } = task;
+      const taskElement = createTaskElement(description);
       addClickEvent(taskElement);
       todoListContainer.appendChild(taskElement);
     });
