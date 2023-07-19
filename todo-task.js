@@ -26,6 +26,10 @@ class Task {
     this.#task.push({ name, taskCompleted: false });
   };
 
+  sortAlphabetical() {
+    this.#task.sort((task1, task2) => task1.name < task2.name ? -1 : 1);
+  }
+
   get allTask() {
     return [...this.#task];
   }
@@ -35,6 +39,7 @@ const main = () => {
   const addTask = document.querySelector("#add-task");
   const todoListContainer = document.querySelector("#todo-list");
   const taskDetails = document.querySelector("#task-details");
+  const sortbutton = document.querySelector('#sort-button');
   const tasks = new Task();
 
   const createTask = () => {
@@ -45,6 +50,18 @@ const main = () => {
     addClickEvent(taskElement);
     todoListContainer.append(taskElement);
   };
+
+  sortbutton.onclick = () => {
+    while (todoListContainer.firstChild) {
+      todoListContainer.removeChild(todoListContainer.firstChild);
+    }
+    tasks.sortAlphabetical();
+    tasks.allTask.forEach(task => {
+      const { name, _ } = task;
+      const taskElement = createTaskElement(name);
+      todoListContainer.appendChild(taskElement);
+    });
+  }
 
   addTask.onclick = createTask;
 };

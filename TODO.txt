@@ -33,3 +33,12 @@ Tasks
         append;
       });
     };
+
+
+
+tasks = [{name: 'this', taskCompleted: false},
+{name: 'this is again', taskCompleted: false}, 
+{name: 'aloo', taskCompleted: false}]
+
+for sorting
+tasks.toSorted((task1, task2) => task1.name < task2.name ? -1 : 1);
