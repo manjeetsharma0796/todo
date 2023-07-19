@@ -1,6 +1,3 @@
-*.swp
-*.DS*
-*.swo
-*.swn
-*.swm
-requirement.txt
+requirement.md
+TODO.txt
+.eslintrc.js
