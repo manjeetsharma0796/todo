@@ -16,15 +16,15 @@ const addClickEvent = (taskElement) => {
 };
 
 class Task {
-  #task
+  #task;
 
   constructor() {
     this.#task = [];
-  };
+  }
 
   addTask(name) {
     this.#task.push({ name, taskCompleted: false });
-  };
+  }
 
   sortAlphabetical() {
     this.#task.sort((task1, task2) => task1.name < task2.name ? -1 : 1);
@@ -33,13 +33,13 @@ class Task {
   get allTask() {
     return [...this.#task];
   }
-};
+}
 
 const main = () => {
   const addTask = document.querySelector("#add-task");
   const todoListContainer = document.querySelector("#todo-list");
   const taskDetails = document.querySelector("#task-details");
-  const sortbutton = document.querySelector('#sort-button');
+  const sortbutton = document.querySelector("#sort-button");
   const tasks = new Task();
 
   const createTask = () => {
@@ -54,7 +54,7 @@ const main = () => {
   const sortTaskAlphabetical = () => {
     while (todoListContainer.firstChild) {
       todoListContainer.removeChild(todoListContainer.firstChild);
-    };
+    }
 
     tasks.sortAlphabetical();
     tasks.allTask.forEach(task => {
