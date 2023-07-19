@@ -42,3 +42,69 @@ tasks = [{name: 'this', taskCompleted: false},
 
 for sorting
 tasks.toSorted((task1, task2) => task1.name < task2.name ? -1 : 1);
+
+-----------------
+
+TaskList = [{
+  description:'buy milk', 
+  taskCompleted : false,
+},
+{
+  description:'buy milk', 
+  taskCompleted : false,
+}];
+
+it will be easy to maintain taskList data and prevent it from leaking
+
+possible methods that can be applied
+ 1. mark(indexID) => adds css class mark from element
+ 2. clearMark(indexID) => removes css class mark from element
+ 3. add(task) => add task to the list
+
+--------------
+
+to manage the data inside taskList and represent we have 
+
+TaskListController {
+  constructor (taskList) {
+    this.taskList = taskList;
+  }
+
+  #createTaskElement
+
+  addToTaskList(description) {
+    const task = {description, taskCompleted:false};
+    this.#taskList.addTask(task);
+  }
+
+  #sort(list) {
+    return sortedList;
+  }
+
+  render() {
+    if(isSortedButtonOn) #sort
+    append;
+  }
+}
+
+
+---------------
+current flow of program
+
+if clicked any task element
+1. createTask
+    - gets value
+    - adds task to taskList
+    - reset value
+    - createTaskElement
+    - addClickEvent
+    - append
+
+2. if sort button triggers
+    - removes children from container
+    - uses sort method of taskList
+    - then uses the data of taskList
+    - .forEach 
+        createTaskElement, 
+        addClickEvent, 
+        append

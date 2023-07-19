@@ -15,15 +15,15 @@ const addClickEvent = (taskElement) => {
   };
 };
 
-class Task {
+class TaskList {
   #task;
 
   constructor() {
     this.#task = [];
   }
 
-  addTask(description) {
-    this.#task.push({ description, taskCompleted: false });
+  add(task) {
+    this.#task.push(task);
   }
 
   sortAlphabetical() {
@@ -35,18 +35,32 @@ class Task {
   }
 }
 
+class TaskListController {
+  #taskList;
+
+  constructor(taskList) {
+    this.#taskList = taskList;
+  }
+
+  addToTaskList(description) {
+    const task = { description, taskCompleted: false };
+    this.#taskList.add(task);
+  }
+}
+
 const main = () => {
   const addTask = document.querySelector("#add-task");
   const todoListContainer = document.querySelector("#todo-list");
   const taskDetails = document.querySelector("#task-details");
   const sortbutton = document.querySelector("#sort-button");
-  const tasks = new Task();
+  const taskList = new TaskList();
+  const taskListController = new TaskListController(taskList);
 
   const createTask = () => {
-    const task = taskDetails.value;
-    tasks.addTask(task);
+    const description = taskDetails.value;
+    taskListController.addToTaskList(description);
     taskDetails.value = "";
-    const taskElement = createTaskElement(task);
+    const taskElement = createTaskElement(description);
     addClickEvent(taskElement);
     todoListContainer.append(taskElement);
   };
@@ -56,8 +70,8 @@ const main = () => {
       todoListContainer.removeChild(todoListContainer.firstChild);
     }
 
-    tasks.sortAlphabetical();
-    tasks.allTask.forEach(task => {
+    taskList.sortAlphabetical();
+    taskList.allTask.forEach(task => {
       const { description, _ } = task;
       const taskElement = createTaskElement(description);
       addClickEvent(taskElement);
