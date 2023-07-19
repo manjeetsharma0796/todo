@@ -1,7 +1,3 @@
-const getTodoContainer = () => document.querySelector("#todo-list");
-const getAddTaskElement = () => document.querySelector("#add-task");
-const getTaskDetailElement = () => document.querySelector("#task-details");
-
 const createTaskElement = (name) => {
   const taskElement = document.createElement("p");
   taskElement.innerText = name;
@@ -32,9 +28,9 @@ const addClickEvent = (taskElement) => {
 };
 
 const main = () => {
-  const addTask = getAddTaskElement();
-  const todoListContainer = getTodoContainer();
-  const taskDetailsElement = getTaskDetailElement();
+  const addTask = document.querySelector("#add-task");
+  const todoListContainer = document.querySelector("#todo-list");
+  const taskDetailsElement = document.querySelector("#task-details");
   const taskList = [];
 
   const onNewTask = () => {
