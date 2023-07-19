@@ -60,7 +60,6 @@ const main = () => {
     tasks.allTask.forEach(task => {
       const { name, _ } = task;
       const taskElement = createTaskElement(name);
-
       addClickEvent(taskElement);
       todoListContainer.appendChild(taskElement);
     });
