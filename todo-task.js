@@ -51,18 +51,22 @@ const main = () => {
     todoListContainer.append(taskElement);
   };
 
-  sortbutton.onclick = () => {
+  const sortTaskAlphabetical = () => {
     while (todoListContainer.firstChild) {
       todoListContainer.removeChild(todoListContainer.firstChild);
-    }
+    };
+
     tasks.sortAlphabetical();
     tasks.allTask.forEach(task => {
       const { name, _ } = task;
       const taskElement = createTaskElement(name);
+
+      addClickEvent(taskElement);
       todoListContainer.appendChild(taskElement);
     });
-  }
+  };
 
+  sortbutton.onclick = sortTaskAlphabetical;
   addTask.onclick = createTask;
 };
 
