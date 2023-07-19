@@ -1,0 +1,35 @@
+I was using DOM information
+
+need to work on maintaining data myself,
+need to reduce asking data from DOM
+
+Implement MVC
+
+Tasks
+
+  1.Take info from uses
+  2.Store Information
+  3.Console to confirm
+
+
+  ---------
+  feedback
+  1. Pulling out functions into at the very start and reusablity isn't used , so why not inline
+  2. 
+
+
+  -----------------
+  for 6th requirement
+
+  1. create sort alphabetical button in html and commit
+  2. add handler onclick what will happen
+    pseudocode
+
+    sortAlphabetical.onclick =() => {
+      removeAllChild from todoListContainer
+      sort the taskData
+      taskData.forEach((task) => {
+        createElement
+        append;
+      });
+    };

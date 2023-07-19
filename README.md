@@ -13,12 +13,16 @@ Requirement 2:
 
   - Remove the hardcoded html elements and create them dynamically from javascript code. Use the same task from previous requirement
   
-  Requirement 3:
+Requirement 3:
   - Remove the hardcoded todo tasks, provide a feature to add todo task. 
   
-  Requirement 4:
+Requirement 4:
   - Add a feature to mark a task done. When a task is marked done it should be strike out.
   
-  Requirement 5:
+Requirement 5:
   
   - Add a feature to mark a task undone. When a task is marked undone or it is not done there should be no strike out.
+
+Requirement 6:
+
+  - Provide an option to display tasks in alphabetic order on demand. Default should be the order in which tasks should order based on order they are created.
