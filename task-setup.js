@@ -42,9 +42,11 @@ const main = () => {
   const addTask = getAddTaskElement();
   const todoListContainer = getTodoContainer();
   const taskDetailsElement = getTaskDetailElement();
+  const taskList = [];
 
   const onNewTask = () => {
     const task = readTask(taskDetailsElement);
+    taskList.push({ task, taskCompleted: false });
     removeValue(taskDetailsElement);
     const taskElement = createTaskElement(task);
     addClickEvent(taskElement);
