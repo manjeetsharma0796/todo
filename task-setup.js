@@ -2,15 +2,9 @@ const getTodoContainer = () => document.querySelector("#todo-list");
 const getAddTaskElement = () => document.querySelector("#add-task");
 const getTaskDetailElement = () => document.querySelector("#task-details");
 
-const removeAllChild = (element) => {
-  while (element.firstChild) {
-    element.removeChild(element.firstChild);
-  }
-};
-
-const createTaskElement = (taskText) => {
+const createTaskElement = (name) => {
   const taskElement = document.createElement("p");
-  taskElement.innerText = taskText;
+  taskElement.innerText = name;
   return taskElement;
 };
 
@@ -22,7 +16,6 @@ const appendTask = (container, taskElements) => {
 
 const readTask = (taskDetailsElement) => taskDetailsElement.value;
 
-const removeValue = (element) => element.value = "";
 
 const markTask = (taskElement) => taskElement.classList.add("marked");
 const clearMarkFromTask = (taskElement) => taskElement.classList.remove("marked");
@@ -47,7 +40,7 @@ const main = () => {
   const onNewTask = () => {
     const task = readTask(taskDetailsElement);
     taskList.push({ task, taskCompleted: false });
-    removeValue(taskDetailsElement);
+    taskDetailsElement.value = "";
     const taskElement = createTaskElement(task);
     addClickEvent(taskElement);
     todoListContainer.append(taskElement);
