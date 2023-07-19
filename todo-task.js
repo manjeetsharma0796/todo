@@ -26,11 +26,7 @@ class TaskList {
     this.#task.push(task);
   }
 
-  sortAlphabetical() {
-    this.#task.sort((task1, task2) => task1.description < task2.description ? -1 : 1);
-  }
-
-  get allTask() {
+  get allTasks() {
     return [...this.#task];
   }
 }
@@ -45,6 +41,15 @@ class TaskListController {
   addToTaskList(description) {
     const task = { description, taskCompleted: false };
     this.#taskList.add(task);
+  }
+
+  #sortAlphabetical() {
+    const tasks = this.#taskList.allTasks;
+    return tasks.toSorted((task1, task2) => task1.description < task2.description ? -1 : 1);
+  }
+
+  get sortedTasks() {
+    return this.#sortAlphabetical();
   }
 }
 
@@ -70,13 +75,13 @@ const main = () => {
       todoListContainer.removeChild(todoListContainer.firstChild);
     }
 
-    taskList.sortAlphabetical();
-    taskList.allTask.forEach(task => {
-      const { description, _ } = task;
-      const taskElement = createTaskElement(description);
-      addClickEvent(taskElement);
-      todoListContainer.appendChild(taskElement);
-    });
+    taskListController.sortedTasks
+      .forEach(task => {
+        const { description, _ } = task;
+        const taskElement = createTaskElement(description);
+        addClickEvent(taskElement);
+        todoListContainer.appendChild(taskElement);
+      });
   };
 
   sortbutton.onclick = sortTaskAlphabetical;
