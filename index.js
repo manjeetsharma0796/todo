@@ -24,9 +24,17 @@ const readTask = (taskDetailsElement) => taskDetailsElement.value;
 
 const removeValue = (element) => element.value = '';
 
+const markTask = (taskElement) => taskElement.classList.add('marked');
+const clearMarkFromTask = (taskElement) => taskElement.classList.remove('marked');
+
 const addClickEvent = (taskElement) => {
   taskElement.onclick = () => {
-    taskElement.classList.add('marked');
+    markTask(taskElement);
+
+    taskElement.onclick = () => {
+      taskElement.classList.remove('marked');
+      addClickEvent(taskElement);
+    }
   }
 };
 
