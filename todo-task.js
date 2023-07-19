@@ -10,7 +10,6 @@ const appendTask = (container, taskElements) => {
   });
 };
 
-const readTask = (taskDetailsElement) => taskDetailsElement.value;
 
 
 const markTask = (taskElement) => taskElement.classList.add("marked");
@@ -34,7 +33,7 @@ const main = () => {
   const taskList = [];
 
   const onNewTask = () => {
-    const task = readTask(taskDetailsElement);
+    const task = taskDetailsElement.value;
     taskList.push({ task, taskCompleted: false });
     taskDetailsElement.value = "";
     const taskElement = createTaskElement(task);
