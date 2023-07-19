@@ -15,15 +15,31 @@ const addClickEvent = (taskElement) => {
   };
 };
 
+class Task {
+  #task
+
+  constructor() {
+    this.#task = [];
+  };
+
+  addTask(name) {
+    this.#task.push({ name, taskCompleted: false });
+  };
+
+  get allTask() {
+    return [...this.#task];
+  }
+};
+
 const main = () => {
   const addTask = document.querySelector("#add-task");
   const todoListContainer = document.querySelector("#todo-list");
   const taskDetails = document.querySelector("#task-details");
-  const taskList = [];
+  const tasks = new Task();
 
   const createTask = () => {
     const task = taskDetails.value;
-    taskList.push({ task, taskCompleted: false });
+    tasks.addTask(task);
     taskDetails.value = "";
     const taskElement = createTaskElement(task);
     addClickEvent(taskElement);
