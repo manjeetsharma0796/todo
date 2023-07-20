@@ -68,13 +68,13 @@ const sortTaskAlphabetical = (todoListContainer, taskListController) => {
   });
 };
 
-const createTask = (taskDetails, taskListController) => {
+const createTask = (todoListContainer, taskDetails, taskListController) => {
   const description = taskDetails.value;
   taskListController.addToTaskList(description);
-  taskDetails.value = "";
   const taskElement = createTaskElement(description);
   addClickEvent(taskElement);
   todoListContainer.append(taskElement);
+  taskDetails.value = "";
 };
 
 const main = () => {
@@ -90,7 +90,7 @@ const main = () => {
   };
 
   addTask.onclick = () => {
-    createTask(taskDetails, taskListController);
+    createTask(todoListContainer, taskDetails, taskListController);
   };
 };
 
