@@ -55,7 +55,7 @@ class TaskListController {
   }
 }
 
-const sortTaskAlphabetical = (todoListContainer, taskListController) => {
+const sortTaskAlphabetical = (todoListContainer, taskListController, sortStatus) => {
   while (todoListContainer.firstChild) {
     todoListContainer.removeChild(todoListContainer.firstChild);
   }
@@ -66,6 +66,7 @@ const sortTaskAlphabetical = (todoListContainer, taskListController) => {
     addClickEvent(taskElement);
     todoListContainer.appendChild(taskElement);
   });
+  sortStatus.innerText = "Alphabetical";
 };
 
 const createTask = (todoListContainer, taskDetails, taskListController) => {
@@ -77,7 +78,7 @@ const createTask = (todoListContainer, taskDetails, taskListController) => {
   taskDetails.value = "";
 };
 
-const sortByAdded = (todoListContainer, taskList) => {
+const sortByAdded = (todoListContainer, taskList, sortStatus) => {
   while (todoListContainer.firstChild) {
     todoListContainer.removeChild(todoListContainer.firstChild);
   }
@@ -88,6 +89,7 @@ const sortByAdded = (todoListContainer, taskList) => {
     addClickEvent(taskElement);
     todoListContainer.appendChild(taskElement);
   });
+  sortStatus.innerText = "Added";
 };
 
 const main = () => {
@@ -96,15 +98,16 @@ const main = () => {
   const taskDetails = document.querySelector("#task-details");
   const sortButton = document.querySelector("#sort-button");
   const sortByAddedButton = document.querySelector("#sort-by-added");
+  const sortStatus = document.querySelector("#sort-status");
   const taskList = new TaskList();
   const taskListController = new TaskListController(taskList);
 
   sortButton.onclick = () => {
-    sortTaskAlphabetical(todoListContainer, taskListController);
+    sortTaskAlphabetical(todoListContainer, taskListController, sortStatus);
   };
 
   sortByAddedButton.onclick = () => {
-    sortByAdded(todoListContainer, taskList);
+    sortByAdded(todoListContainer, taskList, sortStatus);
   };
 
   addTask.onclick = () => {
