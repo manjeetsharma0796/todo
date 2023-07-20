@@ -55,6 +55,28 @@ class TaskListController {
   }
 }
 
+const sortTaskAlphabetical = (todoListContainer, taskListController) => {
+  while (todoListContainer.firstChild) {
+    todoListContainer.removeChild(todoListContainer.firstChild);
+  }
+
+  taskListController.sortedTasks.forEach((task) => {
+    const { description, _ } = task;
+    const taskElement = createTaskElement(description);
+    addClickEvent(taskElement);
+    todoListContainer.appendChild(taskElement);
+  });
+};
+
+const createTask = (taskDetails, taskListController) => {
+  const description = taskDetails.value;
+  taskListController.addToTaskList(description);
+  taskDetails.value = "";
+  const taskElement = createTaskElement(description);
+  addClickEvent(taskElement);
+  todoListContainer.append(taskElement);
+};
+
 const main = () => {
   const addTask = document.querySelector("#add-task");
   const todoListContainer = document.querySelector("#todo-list");
@@ -63,30 +85,13 @@ const main = () => {
   const taskList = new TaskList();
   const taskListController = new TaskListController(taskList);
 
-  const createTask = () => {
-    const description = taskDetails.value;
-    taskListController.addToTaskList(description);
-    taskDetails.value = "";
-    const taskElement = createTaskElement(description);
-    addClickEvent(taskElement);
-    todoListContainer.append(taskElement);
+  sortbutton.onclick = () => {
+    sortTaskAlphabetical(todoListContainer, taskListController);
   };
 
-  const sortTaskAlphabetical = () => {
-    while (todoListContainer.firstChild) {
-      todoListContainer.removeChild(todoListContainer.firstChild);
-    }
-
-    taskListController.sortedTasks.forEach((task) => {
-      const { description, _ } = task;
-      const taskElement = createTaskElement(description);
-      addClickEvent(taskElement);
-      todoListContainer.appendChild(taskElement);
-    });
+  addTask.onclick = () => {
+    createTask(taskDetails, taskListController);
   };
-
-  sortbutton.onclick = sortTaskAlphabetical;
-  addTask.onclick = createTask;
 };
 
 window.onload = main;
