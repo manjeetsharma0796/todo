@@ -12,10 +12,7 @@ Tasks
   3.Console to confirm
 
 
-  ---------
-  feedback
-  1. Pulling out functions into at the very start and reusablity isn't used , so why not inline
-  2. 
+ 
 
 
   -----------------
@@ -108,3 +105,11 @@ if clicked any task element
         createTaskElement, 
         addClickEvent, 
         append
+
+
+ ---------
+  feedback
+  1. Pulling out functions into at the very start and reusablity isn't used , so why not inline
+  2. see others code and understand
+  3. work on ui, it todo each element highlight, 
+  4. from my side: alignment, coloring, highlighting
