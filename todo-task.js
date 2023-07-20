@@ -77,6 +77,19 @@ const createTask = (todoListContainer, taskDetails, taskListController) => {
   taskDetails.value = "";
 };
 
+const sortByAdded = (todoListContainer, taskList) => {
+  while (todoListContainer.firstChild) {
+    todoListContainer.removeChild(todoListContainer.firstChild);
+  }
+
+  taskList.allTasks.forEach((task) => {
+    const { description, _ } = task;
+    const taskElement = createTaskElement(description);
+    addClickEvent(taskElement);
+    todoListContainer.appendChild(taskElement);
+  });
+};
+
 const main = () => {
   const addTask = document.querySelector("#add-task");
   const todoListContainer = document.querySelector("#todo-list");
@@ -88,6 +101,10 @@ const main = () => {
 
   sortButton.onclick = () => {
     sortTaskAlphabetical(todoListContainer, taskListController);
+  };
+
+  sortByAddedButton.onclick = () => {
+    sortByAdded(todoListContainer, taskList);
   };
 
   addTask.onclick = () => {
