@@ -6,7 +6,7 @@ const createTaskElement = (description, id) => {
 };
 
 const addClickEvent = (taskElement) => {
-  taskElement.onclick = (e) => {
+  taskElement.onclick = () => {
     taskElement.classList.add("marked");
 
     taskElement.onclick = () => {
@@ -25,8 +25,8 @@ class TaskList {
     this.#taskCount = 0;
   }
 
-  #sortByCompletion() {
-    this.#tasks.sort((task1, task2) =>
+  sortByCompletion() {
+    return this.#tasks.toSorted((task1, task2) =>
       task1.taskCompleted < task2.taskCompleted ? 1 : -1
     );
   }
@@ -38,7 +38,7 @@ class TaskList {
   add(description) {
     const id = this.#taskCount;
     this.#tasks.push({ description, taskCompleted: false, id });
-    this.#sortByCompletion();
+    this.sortByCompletion();
     this.#incrementCount();
   }
 
@@ -139,6 +139,7 @@ const main = () => {
   const sortButton = document.querySelector("#sort-button");
   const sortByAddedButton = document.querySelector("#sort-by-added");
   const sortStatus = document.querySelector("#sort-status");
+  const sortByCompletionButton = document.querySelector("#sort-by-completion");
   const taskList = new TaskList();
   const taskListController = new TaskListController(taskList);
 

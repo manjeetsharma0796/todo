@@ -113,3 +113,18 @@ if clicked any task element
   2. see others code and understand
   3. work on ui, it todo each element highlight, 
   4. from my side: alignment, coloring, highlighting
+
+Not sure
+
+const toggleStatus = (status, element) => {
+  if (status) {
+    element.onclick = () => {
+      element.classList.remove("marked");
+    };
+  } else {
+    element.onclick = () => {
+      element.classList.add("marked");
+      toggleStatus(status, element);
+    };
+  }
+};
