@@ -81,11 +81,12 @@ const main = () => {
   const addTask = document.querySelector("#add-task");
   const todoListContainer = document.querySelector("#todo-list");
   const taskDetails = document.querySelector("#task-details");
-  const sortbutton = document.querySelector("#sort-button");
+  const sortButton = document.querySelector("#sort-button");
+  const sortByAddedButton = document.querySelector("#sort-by-added");
   const taskList = new TaskList();
   const taskListController = new TaskListController(taskList);
 
-  sortbutton.onclick = () => {
+  sortButton.onclick = () => {
     sortTaskAlphabetical(todoListContainer, taskListController);
   };
 
