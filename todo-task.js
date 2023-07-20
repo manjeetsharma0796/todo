@@ -16,7 +16,7 @@ const addClickEvent = (taskElement) => {
   };
 };
 
-class TaskList {
+class Todo {
   #tasks;
   #taskCount;
 
@@ -47,112 +47,112 @@ class TaskList {
   }
 }
 
-class TaskListController {
-  #taskList;
+class TodoController {
+  #todo;
 
-  constructor(taskList) {
-    this.#taskList = taskList;
+  constructor(todo) {
+    this.#todo = todo;
   }
 
-  addToTaskList(description) {
-    this.#taskList.add(description);
+  addTodo(description) {
+    this.#todo.add(description);
   }
 
   #sortAlphabetical() {
-    const tasks = this.#taskList.allTasks;
-    return tasks.toSorted((task1, task2) =>
+    const todo = this.#todo.allTasks;
+    return todo.toSorted((task1, task2) =>
       task1.description < task2.description ? -1 : 1
     );
   }
 
-  get sortedTasks() {
+  get sortedTodo() {
     return this.#sortAlphabetical();
   }
 }
 
 const sortTaskAlphabetical = (
-  todoListContainer,
-  taskListController,
+  todoContainer,
+  todoController,
   sortStatus
 ) => {
-  while (todoListContainer.firstChild) {
-    todoListContainer.removeChild(todoListContainer.firstChild);
+  while (todoContainer.firstChild) {
+    todoContainer.removeChild(todoContainer.firstChild);
   }
 
-  taskListController.sortedTasks.forEach((task) => {
+  todoController.sortedTodo.forEach((task) => {
     const { description, _, id } = task;
     const taskElement = createTaskElement(description, id);
-    addClickEvent(taskElement, taskListController);
-    todoListContainer.appendChild(taskElement);
+    addClickEvent(taskElement, todoController);
+    todoContainer.appendChild(taskElement);
   });
   sortStatus.innerText = "Alphabetical";
 };
 
-const render = (todoListContainer, taskListController, taskList) => {
-  while (todoListContainer.firstChild) {
-    todoListContainer.removeChild(todoListContainer.firstChild);
+const render = (todoContainer, todoController, todo) => {
+  while (todoContainer.firstChild) {
+    todoContainer.removeChild(todoContainer.firstChild);
   }
 
-  taskList.allTasks.forEach((task) => {
+  todo.allTasks.forEach((task) => {
     const { description, _, id } = task;
     const taskElement = createTaskElement(description, id);
-    addClickEvent(taskElement, taskListController);
-    todoListContainer.appendChild(taskElement);
+    addClickEvent(taskElement, todoController);
+    todoContainer.appendChild(taskElement);
   });
 };
 
 const createTask = (
-  todoListContainer,
+  todoContainer,
   taskDetails,
-  taskListController,
-  taskList
+  todoController,
+  todo
 ) => {
   const description = taskDetails.value;
-  taskListController.addToTaskList(description);
-  render(todoListContainer, taskListController, taskList);
+  todoController.addTodo(description);
+  render(todoContainer, todoController, todo);
   taskDetails.value = "";
 };
 
 const sortByAdded = (
-  todoListContainer,
-  taskList,
+  todoContainer,
+  todo,
   sortStatus,
-  taskListController
+  todoController
 ) => {
-  while (todoListContainer.firstChild) {
-    todoListContainer.removeChild(todoListContainer.firstChild);
+  while (todoContainer.firstChild) {
+    todoContainer.removeChild(todoContainer.firstChild);
   }
 
-  taskList.allTasks.forEach((task) => {
+  todo.allTasks.forEach((task) => {
     const { description, _, id } = task;
     const taskElement = createTaskElement(description, id);
-    addClickEvent(taskElement, taskListController);
-    todoListContainer.appendChild(taskElement);
+    addClickEvent(taskElement, todoController);
+    todoContainer.appendChild(taskElement);
   });
   sortStatus.innerText = "Added";
 };
 
 const main = () => {
   const addTask = document.querySelector("#add-task");
-  const todoListContainer = document.querySelector("#todo-list");
+  const todoContainer = document.querySelector("#todo-list");
   const taskDetails = document.querySelector("#task-details");
   const sortButton = document.querySelector("#sort-button");
   const sortByAddedButton = document.querySelector("#sort-by-added");
   const sortStatus = document.querySelector("#sort-status");
   const sortByCompletionButton = document.querySelector("#sort-by-completion");
-  const taskList = new TaskList();
-  const taskListController = new TaskListController(taskList);
+  const todo = new Todo();
+  const todoController = new TodoController(todo);
 
   sortButton.onclick = () => {
-    sortTaskAlphabetical(todoListContainer, taskListController, sortStatus);
+    sortTaskAlphabetical(todoContainer, todoController, sortStatus);
   };
 
   sortByAddedButton.onclick = () => {
-    sortByAdded(todoListContainer, taskList, sortStatus);
+    sortByAdded(todoContainer, todo, sortStatus);
   };
 
   addTask.onclick = () => {
-    createTask(todoListContainer, taskDetails, taskListController, taskList);
+    createTask(todoContainer, taskDetails, todoController, todo);
   };
 };
 
