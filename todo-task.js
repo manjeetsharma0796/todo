@@ -45,7 +45,9 @@ class TaskListController {
 
   #sortAlphabetical() {
     const tasks = this.#taskList.allTasks;
-    return tasks.toSorted((task1, task2) => task1.description < task2.description ? -1 : 1);
+    return tasks.toSorted((task1, task2) =>
+      task1.description < task2.description ? -1 : 1
+    );
   }
 
   get sortedTasks() {
@@ -75,13 +77,12 @@ const main = () => {
       todoListContainer.removeChild(todoListContainer.firstChild);
     }
 
-    taskListController.sortedTasks
-      .forEach(task => {
-        const { description, _ } = task;
-        const taskElement = createTaskElement(description);
-        addClickEvent(taskElement);
-        todoListContainer.appendChild(taskElement);
-      });
+    taskListController.sortedTasks.forEach((task) => {
+      const { description, _ } = task;
+      const taskElement = createTaskElement(description);
+      addClickEvent(taskElement);
+      todoListContainer.appendChild(taskElement);
+    });
   };
 
   sortbutton.onclick = sortTaskAlphabetical;
