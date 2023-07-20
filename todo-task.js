@@ -16,18 +16,24 @@ const addClickEvent = (taskElement) => {
 };
 
 class TaskList {
-  #task;
+  #tasks;
 
   constructor() {
-    this.#task = [];
+    this.#tasks = [];
+  }
+
+  #sortByCompletion() {
+    this.#tasks.sort((task1, task2) =>
+      task1.taskCompleted < task2.taskCompleted ? 1 : -1);
   }
 
   add(task) {
-    this.#task.push(task);
+    this.#tasks.push(task);
+    this.#sortByCompletion();
   }
 
   get allTasks() {
-    return [...this.#task];
+    return [...this.#tasks];
   }
 }
 
