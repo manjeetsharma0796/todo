@@ -1,14 +1,15 @@
-const createTaskElement = (description) => {
+const createTaskElement = (description, id) => {
   const taskElement = document.createElement("p");
+  taskElement.setAttribute("id", id);
   taskElement.innerText = description;
   return taskElement;
 };
 
-const addClickEvent = (taskElement, taskListController) => {
+const addClickEvent = (taskElement) => {
   taskElement.onclick = (e) => {
     taskElement.classList.add("marked");
 
-    taskElement.onclick = (e) => {
+    taskElement.onclick = () => {
       taskElement.classList.remove("marked");
       addClickEvent(taskElement);
     };
@@ -17,9 +18,11 @@ const addClickEvent = (taskElement, taskListController) => {
 
 class TaskList {
   #tasks;
+  #taskCount;
 
   constructor() {
     this.#tasks = [];
+    this.#taskCount = 0;
   }
 
   #sortByCompletion() {
@@ -28,9 +31,15 @@ class TaskList {
     );
   }
 
-  add(task) {
-    this.#tasks.push(task);
+  #incrementCount() {
+    this.#taskCount++;
+  }
+
+  add(description) {
+    const id = this.#taskCount;
+    this.#tasks.push({ description, taskCompleted: false, id });
     this.#sortByCompletion();
+    this.#incrementCount();
   }
 
   get allTasks() {
@@ -46,8 +55,7 @@ class TaskListController {
   }
 
   addToTaskList(description) {
-    const task = { description, taskCompleted: false };
-    this.#taskList.add(task);
+    this.#taskList.add(description);
   }
 
   #sortAlphabetical() {
@@ -72,21 +80,36 @@ const sortTaskAlphabetical = (
   }
 
   taskListController.sortedTasks.forEach((task) => {
-    const { description, _ } = task;
-    const taskElement = createTaskElement(description);
+    const { description, _, id } = task;
+    const taskElement = createTaskElement(description, id);
     addClickEvent(taskElement, taskListController);
     todoListContainer.appendChild(taskElement);
   });
   sortStatus.innerText = "Alphabetical";
 };
 
-const createTask = (todoListContainer, taskDetails, taskListController) => {
+const render = (todoListContainer, taskListController, taskList) => {
+  while (todoListContainer.firstChild) {
+    todoListContainer.removeChild(todoListContainer.firstChild);
+  }
+
+  taskList.allTasks.forEach((task) => {
+    const { description, _, id } = task;
+    const taskElement = createTaskElement(description, id);
+    addClickEvent(taskElement, taskListController);
+    todoListContainer.appendChild(taskElement);
+  });
+};
+
+const createTask = (
+  todoListContainer,
+  taskDetails,
+  taskListController,
+  taskList
+) => {
   const description = taskDetails.value;
   taskListController.addToTaskList(description);
-  const taskElement = createTaskElement(description);
-  addClickEvent(taskElement);
-  todoListContainer.append(taskElement);
-  taskDetails.value = "";
+  render(todoListContainer, taskListController, taskList);
 };
 
 const sortByAdded = (
@@ -127,7 +150,7 @@ const main = () => {
   };
 
   addTask.onclick = () => {
-    createTask(todoListContainer, taskDetails, taskListController);
+    createTask(todoListContainer, taskDetails, taskListController, taskList);
   };
 };
 
