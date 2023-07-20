@@ -110,6 +110,7 @@ const createTask = (
   const description = taskDetails.value;
   taskListController.addToTaskList(description);
   render(todoListContainer, taskListController, taskList);
+  taskDetails.value = "";
 };
 
 const sortByAdded = (
@@ -123,8 +124,8 @@ const sortByAdded = (
   }
 
   taskList.allTasks.forEach((task) => {
-    const { description, _ } = task;
-    const taskElement = createTaskElement(description);
+    const { description, _, id } = task;
+    const taskElement = createTaskElement(description, id);
     addClickEvent(taskElement, taskListController);
     todoListContainer.appendChild(taskElement);
   });
