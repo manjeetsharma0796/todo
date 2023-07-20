@@ -128,3 +128,44 @@ const toggleStatus = (status, element) => {
     };
   }
 };
+
+----------------
+Note: Todo is a list of task.
+
+Entities
+
+Models
+
+1. Task
+2. Todo
+
+Controller
+
+3. TodoController
+
+-------------
+Behaviour/Methods
+
+Task = {description:"Buy Soda", taskCompleted: false, taskID: 1};
+
+  - checkTask()
+  - uncheckTask()
+
+Todo = [task, task, task];
+fields will also have taskCount
+
+  - addTask
+  - sortAlphabetical
+  - allTask
+
+TodoController will have Todo and renderer
+
+  - sortAlphabetical
+  - render
+
+
+
+
+
+
+
