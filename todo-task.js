@@ -4,11 +4,11 @@ const createTaskElement = (description) => {
   return taskElement;
 };
 
-const addClickEvent = (taskElement) => {
-  taskElement.onclick = () => {
+const addClickEvent = (taskElement, taskListController) => {
+  taskElement.onclick = (e) => {
     taskElement.classList.add("marked");
 
-    taskElement.onclick = () => {
+    taskElement.onclick = (e) => {
       taskElement.classList.remove("marked");
       addClickEvent(taskElement);
     };
@@ -24,7 +24,8 @@ class TaskList {
 
   #sortByCompletion() {
     this.#tasks.sort((task1, task2) =>
-      task1.taskCompleted < task2.taskCompleted ? 1 : -1);
+      task1.taskCompleted < task2.taskCompleted ? 1 : -1
+    );
   }
 
   add(task) {
@@ -61,7 +62,11 @@ class TaskListController {
   }
 }
 
-const sortTaskAlphabetical = (todoListContainer, taskListController, sortStatus) => {
+const sortTaskAlphabetical = (
+  todoListContainer,
+  taskListController,
+  sortStatus
+) => {
   while (todoListContainer.firstChild) {
     todoListContainer.removeChild(todoListContainer.firstChild);
   }
@@ -69,7 +74,7 @@ const sortTaskAlphabetical = (todoListContainer, taskListController, sortStatus)
   taskListController.sortedTasks.forEach((task) => {
     const { description, _ } = task;
     const taskElement = createTaskElement(description);
-    addClickEvent(taskElement);
+    addClickEvent(taskElement, taskListController);
     todoListContainer.appendChild(taskElement);
   });
   sortStatus.innerText = "Alphabetical";
@@ -84,7 +89,12 @@ const createTask = (todoListContainer, taskDetails, taskListController) => {
   taskDetails.value = "";
 };
 
-const sortByAdded = (todoListContainer, taskList, sortStatus) => {
+const sortByAdded = (
+  todoListContainer,
+  taskList,
+  sortStatus,
+  taskListController
+) => {
   while (todoListContainer.firstChild) {
     todoListContainer.removeChild(todoListContainer.firstChild);
   }
@@ -92,7 +102,7 @@ const sortByAdded = (todoListContainer, taskList, sortStatus) => {
   taskList.allTasks.forEach((task) => {
     const { description, _ } = task;
     const taskElement = createTaskElement(description);
-    addClickEvent(taskElement);
+    addClickEvent(taskElement, taskListController);
     todoListContainer.appendChild(taskElement);
   });
   sortStatus.innerText = "Added";
