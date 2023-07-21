@@ -163,9 +163,11 @@ TodoController will have Todo and renderer
   - sortAlphabetical
   - render
 
+--------------
 
+Requirement Delete button
 
-
-
-
-
+every task will have container 
+and in each container it will consist of :
+  1. task (para element)
+  2. delete(input:button)
