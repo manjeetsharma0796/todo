@@ -16,6 +16,22 @@ const addClickEvent = (taskElement) => {
   };
 };
 
+class Task {
+  #task;
+
+  constructor(description, id) {
+    this.#task = { description, taskCompleted, id };
+  }
+
+  check() {
+    this.#taskCompleted = true;
+  }
+
+  uncheck() {
+    this.#taskCompleted = false;
+  }
+}
+
 class Todo {
   #tasks;
   #taskCount;
@@ -70,11 +86,7 @@ class TodoController {
   }
 }
 
-const sortTaskAlphabetical = (
-  todoContainer,
-  todoController,
-  sortStatus
-) => {
+const sortTaskAlphabetical = (todoContainer, todoController, sortStatus) => {
   while (todoContainer.firstChild) {
     todoContainer.removeChild(todoContainer.firstChild);
   }
@@ -101,24 +113,14 @@ const render = (todoContainer, todoController, todo) => {
   });
 };
 
-const createTask = (
-  todoContainer,
-  taskDetails,
-  todoController,
-  todo
-) => {
+const createTask = (todoContainer, taskDetails, todoController, todo) => {
   const description = taskDetails.value;
   todoController.addTodo(description);
   render(todoContainer, todoController, todo);
   taskDetails.value = "";
 };
 
-const sortByAdded = (
-  todoContainer,
-  todo,
-  sortStatus,
-  todoController
-) => {
+const sortByAdded = (todoContainer, todo, sortStatus, todoController) => {
   while (todoContainer.firstChild) {
     todoContainer.removeChild(todoContainer.firstChild);
   }
