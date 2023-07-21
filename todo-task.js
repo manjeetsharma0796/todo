@@ -158,7 +158,9 @@ const main = () => {
     sortByAdded(todoContainer, todo, sortStatus);
   };
 
-  sortByCompletionButton.onclick = () => {};
+  sortByCompletionButton.onclick = () => {
+    sortByCompletion(todoContainer,todoController, sortStatus)
+  };
 
   addTask.onclick = () => {
     createTask(todoContainer, taskDetails, todoController, todo);
