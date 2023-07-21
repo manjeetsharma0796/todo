@@ -5,17 +5,6 @@ const createTaskElement = (description, id) => {
   return taskElement;
 };
 
-const addClickEvent = (taskElement) => {
-  taskElement.onclick = () => {
-    taskElement.classList.add("marked");
-
-    taskElement.onclick = () => {
-      taskElement.classList.remove("marked");
-      addClickEvent(taskElement);
-    };
-  };
-};
-
 class Task {
   constructor(description, id) {
     this.description = description;
