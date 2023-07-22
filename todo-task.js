@@ -97,21 +97,15 @@ const render = (todoContainer, todoController, todo) => {
     const { description, taskCompleted, id } = task;
     const taskElement = createTaskElement(description, id);
     taskElement.onclick = (e) => {
-      toggleStatus(e.target.id, todoController, todoContainer);
+      todoController.toggleStatus(Number(id));
+      const todo = [...todoController.todo];
+      render(todoContainer, todoController, todo);
     };
     if (taskCompleted) {
       taskElement.classList.add("marked");
-    } else {
-      taskElement.classList.remove("marked");
     }
     todoContainer.appendChild(taskElement);
   });
-};
-
-const toggleStatus = (id, todoController, todoContainer) => {
-  todoController.toggleStatus(Number(id));
-  const todo = [...todoController.todo];
-  render(todoContainer, todoController, todo);
 };
 
 const sortTaskAlphabetical = (todoContainer, todoController, sortStatus) => {
