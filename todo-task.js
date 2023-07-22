@@ -13,7 +13,7 @@ class Task {
   }
 
   toggle() {
-    this.taskCompleted = this.taskCompleted ? false: true;
+    this.taskCompleted = this.taskCompleted ? false : true;
   }
 }
 
@@ -111,7 +111,7 @@ const render = (todoContainer, todoController, todo) => {
 const sortTaskAlphabetical = (todoContainer, todoController, sortStatus) => {
   const todo = todoController.sortedByAlphabetical;
   render(todoContainer, todoController, todo);
-  sortStatus.innerText = "Alphabetical";
+  sortStatus.innerText = "A-Z";
 };
 
 const createTask = (todoContainer, taskDetails, todoController) => {
@@ -125,7 +125,7 @@ const createTask = (todoContainer, taskDetails, todoController) => {
 const sortByDate = (todoContainer, todoController, sortStatus) => {
   const todo = [...todoController.todo];
   render(todoContainer, todoController, todo);
-  sortStatus.innerText = "Added";
+  sortStatus.innerText = "Date";
 };
 
 const sortByStatus = (todoContainer, todoController, sortStatus) => {
@@ -139,9 +139,9 @@ const main = () => {
   const todoContainer = document.querySelector("#todo-list");
   const taskDetails = document.querySelector("#task-details");
   const sortButton = document.querySelector("#sort-button");
-  const sortByDateButton = document.querySelector("#sort-by-added");
+  const sortByDateButton = document.querySelector("#sort-by-date");
   const sortStatus = document.querySelector("#sort-status");
-  const sortByStatusButton = document.querySelector("#sort-by-completion");
+  const sortByStatusButton = document.querySelector("#sort-by-status");
   const todo = new Todo();
   const todoController = new TodoController(todo);
 

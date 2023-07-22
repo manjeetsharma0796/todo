@@ -1,136 +1,152 @@
 <html>
+  <head>
+    <title>Todo Tasks</title>
+    <script src="./todo-task.js"></script>
+    <link rel="stylesheet" href="task-style.css" />
+  </head>
 
-<head>
-	<title>Todo Tasks</title>
-	<script src="./todo-task.js"></script>
-	<link rel="stylesheet" href="task-style.css">
-</head>
+  <body>
+    <section class="page">
+      <header class="flexRow">
+        <h1>Todo</h1>
+      </header>
 
-<body>
-	<section class="page">
+      <main class="flexColumn main">
+        <section id="input-section" class="flexRow">
+          <input
+            type="text"
+            id="task-details"
+            placeholder="Task details"
+            class="input"
+          />
+          <input type="button" value="Add Task" id="add-task" class="input" />
+          <p>Sorted By:<span id="sort-status">Added</span></p>
+        </section>
 
-	<header class="flexRow">
-		<h1>Todo</h1>
-	</header>
+        <section class="flexRow" id="sort-options">
+          <input
+            type="button"
+            value="Sort By: A-Z"
+            id="sort-button"
+            class="input"
+          />
+          <input
+            type="button"
+            value="Sort By: Date"
+            id="sort-by-date"
+            class="input"
+          />
+          <input
+            type="button"
+            value="Sort By: Status"
+            id="sort-by-status"
+            class="input"
+          />
+        </section>
 
-	<main class="flexColumn main">
-		<section id="input-section" class="flexRow">
-			<input type="text" id="task-details" placeholder="Task details" class="input">
-			<input type="button" value="Add Task" id="add-task" class="input">
-			<p>Sorted By:<span id="sort-status">Added</span></p>
-			
-		</section>
-
-		<section class="flexRow" id="sort-options">
-			<input type="button" value="Sort By: A-Z" id="sort-button" class="input">
-			<input type="button" value="Sort By: Date" id="sort-by-added" class="input">
-			<input type="button" value="Sort By: Status" id="sort-by-completion" class="input">
-		</section>
-		
-		<article id="todo-list" class="scroll flexColumn">
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete lore</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete </p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>This is firts task to complete</p>
-				<input type="button" value="Delete">
-			</section>
-			<section class="flexRow task">
-				<p>Thiste  lore</p>
-				<input type="button" value="Delete">
-			</section>
-		</article>
-	</main>
-	</section>
-</body>
-
+        <article id="todo-list" class="scroll flexColumn">
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete lore</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>This is firts task to complete</p>
+            <input type="button" value="Delete" />
+          </section>
+          <section class="flexRow task">
+            <p>Thiste lore</p>
+            <input type="button" value="Delete" />
+          </section>
+        </article>
+      </main>
+    </section>
+  </body>
 </html>
