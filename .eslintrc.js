@@ -1,12 +1,12 @@
 module.exports = {
   env: {
-    "es2022": true,
+    es2022: true,
   },
 
   rules: {
-    "semi": ["error", "always", { "omitLastInOneLineBlock": true }],
+    "semi": ["error", "always", { omitLastInOneLineBlock: true }],
     "quotes": ["error", "double"],
-    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "indent": ["error", 2, { SwitchCase: 1 }],
 
     "complexity": ["error", 2],
     "array-callback-return": ["error", { checkForEach: true }],
@@ -20,8 +20,7 @@ module.exports = {
     "no-implicit-globals": "error",
     "no-param-reassign": "error",
     "no-shadow": "error",
-    "class-methods-use-this": "error",
     "id-denylist": ["error", "data", "callback"],
     "no-extra-semi": "error",
-  }
+  },
 };
