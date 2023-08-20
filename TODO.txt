@@ -171,3 +171,68 @@ every task will have container
 and in each container it will consist of :
   1. task (para element)
   2. delete(input:button)
+
+
+main is task menu               | RENDER TASK MENU
+
+each task is contained in section with p element as title
+
+p 
+section - task-details and add task
+section - sort options with three inputs
+
+article is the wrapper of tasks |
+each task is section            |RENDERTASK
+
+section consist of a para and input for delete
+--------------------
+
+data storing
+
+1. Task
+    description, 
+    id, 
+    completionStatus
+
+    >Behaviour
+    toggle status of task
+    
+2. Todo
+    name, 
+    id,
+    taskList (array)
+
+    >Behaviour
+    1. adding a new task
+    2. deleting a task
+    3. toggle taskstatus
+    4. sort
+
+3. Todos
+    todoList 
+
+    
+    >Behaviour
+    1. adding a new todo(title)
+    2. deleting a todo(id)
+    3. adding a new task(todoId, taskId)
+    4. deleting a task(todoId, taskId)
+    5. toggle taskstatus(todoId, taskId)
+    6. sort(todoId);
+
+==> 
+
+todos.getDetails = 
+[
+  {
+    todoID: 1, 
+    title: "study", 
+    tasks: 
+      [
+        {id: 1, description: "milk" },
+        {id: 2, description: "tomato"} 
+      ] 
+  },
+]
+t1 = 
+
