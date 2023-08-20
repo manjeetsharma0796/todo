@@ -17,7 +17,7 @@ class Todos {
     return this.#todoList.find((todo) => todo.getDetails().todoID === todoID);
   }
 
-  #render() {
+  render() {
     localStorage.setItem("todosDetails", JSON.stringify(this.getDetails()));
     const callBacks = {
       addTask: (description, todoID) => this.#addTask(description, todoID),
