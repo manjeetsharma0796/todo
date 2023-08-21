@@ -12,9 +12,10 @@ const main = () => {
   const createTodoButton = document.querySelector("#create-todo");
 
   const renderer = new Renderer(todosContainer);
-  const todos = new Todos(renderer);
-
+  const todoAppStorage = new TodoAppStorage();
+  const todos = new Todos(renderer, todoAppStorage);
   setupCreateTodoButton(createTodoButton, todos);
+  todos.start();
 };
 
 window.onload = main;

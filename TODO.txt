@@ -236,3 +236,10 @@ todos.getDetails =
 ]
 t1 = 
 
+--------------------
+[*] retrieve from localStorage
+[] loading page from server side
+[] how to maintain data on server side; is it file
+[] add element to delete todo
+
+issue in storing task, on refreshing it removes tasks

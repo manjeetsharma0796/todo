@@ -13,7 +13,7 @@ class Renderer {
     return todoHeader;
   }
 
-  #createAddNewTaskSection(addTaskCb, todoID) {
+  #createAddNewTaskSection(addTask, todoID) {
     const newTaskSection = document.createElement("section");
     newTaskSection.id = "input-section";
     newTaskSection.className = "flexRow";
@@ -31,7 +31,7 @@ class Renderer {
     newTaskButton.className = "input";
     newTaskButton.onclick = () => {
       const description = newTaskInput.value;
-      addTaskCb(description, todoID);
+      addTask(description, todoID);
     };
 
     newTaskSection.append(newTaskInput, newTaskButton);
@@ -126,6 +126,7 @@ class Renderer {
 
     const task = document.createElement("p");
     task.innerText = description;
+
     if (isTaskCompleted) task.classList.add("marked");
     task.onclick = () => {
       toggleStatus(taskID, todoID);
@@ -156,10 +157,10 @@ class Renderer {
     });
   }
 
-  #createTodoElement(todoID) {
+  #createTodoElement() {
     const todoElement = document.createElement("section");
     todoElement.classList.add("flexColumn", "main");
-    todoElement.id = todoID;
+
     return todoElement;
   }
 
@@ -176,9 +177,12 @@ class Renderer {
 
     todosDetails.forEach((todoDetails) => {
       const { title, todoID, tasks } = todoDetails;
+
       const todoElement = this.#createTodoElement(todoID);
       const todoHeader = this.#createTodoHeader(title);
+      
       const addNewTaskSection = this.#createAddNewTaskSection(addTask, todoID);
+     
       const sortSection = this.#createSortSection(
         todoID,
         sortAlphabetical,

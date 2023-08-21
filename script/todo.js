@@ -12,6 +12,7 @@ class Todo {
   #incrementTaskCount() {
     this.#taskCount += 1;
   }
+
   sortAlphabetical() {
     this.#tasks.sort((task1, task2) =>
       task1.description < task2.description ? -1 : 1
@@ -28,11 +29,18 @@ class Todo {
     );
   }
 
-  addTask(description) {
-    const taskID = this.#taskCount;
-    const task = new Task(description, taskID);
+  updateTaskCount(taskID) {
+    this.#taskCount = this.#taskCount <= taskID ? taskID + 1 : this.#taskCount;
+  }
+
+  addTask(description, isTaskCompleted, taskID) {
+    if (!taskID) {
+      taskID = this.#taskCount;
+      this.#incrementTaskCount();
+    }
+
+    const task = new Task(description, taskID, isTaskCompleted);
     this.#tasks.push(task);
-    this.#incrementTaskCount();
   }
 
   deleteTask(taskID) {
@@ -58,7 +66,6 @@ class Todo {
       []
     );
 
-    console.log(tasks);
     return { todoID, title, tasks };
   }
 }
