@@ -113,14 +113,14 @@ class Renderer {
     return deleteButton;
   }
 
-  #createTaskElement(
+  #createTaskElement({
     description,
     isTaskCompleted,
     taskID,
     todoID,
     deleteTask,
-    toggleStatus
-  ) {
+    toggleStatus,
+  }) {
     const taskElement = document.createElement("section");
     taskElement.classList.add("flexRow", "task");
 
@@ -141,17 +141,17 @@ class Renderer {
     return taskElement;
   }
 
-  #renderTasks(tasksContainer, tasks, todoID, deleteTask, toggleStatus) {
+  #renderTasks({ tasksContainer, tasks, todoID, deleteTask, toggleStatus }) {
     tasks.forEach((task) => {
       const { taskID, description, isTaskCompleted } = task;
-      const taskElement = this.#createTaskElement(
+      const taskElement = this.#createTaskElement({
         description,
         isTaskCompleted,
         taskID,
         todoID,
         deleteTask,
-        toggleStatus
-      );
+        toggleStatus,
+      });
 
       tasksContainer.append(taskElement);
     });
@@ -191,13 +191,13 @@ class Renderer {
       );
       const tasksContainer = this.#createTasksContainer();
 
-      this.#renderTasks(
+      this.#renderTasks({
         tasksContainer,
         tasks,
         todoID,
         deleteTask,
-        toggleStatus
-      );
+        toggleStatus,
+      });
       todoElement.append(
         todoHeader,
         addNewTaskSection,

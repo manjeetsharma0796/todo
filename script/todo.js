@@ -33,8 +33,10 @@ class Todo {
     this.#taskCount = this.#taskCount <= taskID ? taskID + 1 : this.#taskCount;
   }
 
-  addTask(description, isTaskCompleted, taskID) {
-    if (!taskID) {
+  addTask(description, isTaskCompleted, oldtaskID) {
+    let taskID = oldtaskID;
+
+    if (!oldtaskID) {
       taskID = this.#taskCount;
       this.#incrementTaskCount();
     }
@@ -59,13 +61,11 @@ class Todo {
   }
 
   getDetails() {
-    const title = this.title;
-    const todoID = this.todoID;
     const tasks = this.#tasks.reduce(
       (tasksDetails, task) => tasksDetails.concat(task.getDetails()),
       []
     );
 
-    return { todoID, title, tasks };
+    return { todoID: this.todoID, title: this.title, tasks };
   }
 }

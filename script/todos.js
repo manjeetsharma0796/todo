@@ -46,8 +46,9 @@ class Todos {
     this.render(this.getDetails());
   }
 
-  addTodo(title, todoID) {
-    if (!todoID) {
+  addTodo(title, oldTodoID) {
+    let todoID = oldTodoID;
+    if (!oldTodoID) {
       todoID = this.#todoCount;
       this.#incrementTodoCount();
     }

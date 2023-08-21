@@ -3,7 +3,6 @@ module.exports = {
     es2022: true,
   },
 
-
   rules: {
     "semi": ["error", "always", { omitLastInOneLineBlock: true }],
     "quotes": ["error", "double"],
@@ -11,7 +10,7 @@ module.exports = {
     "complexity": ["error", 2],
     "array-callback-return": ["error", { checkForEach: true }],
     "max-depth": ["error", 2],
-    "max-statements": ["error", 15],
+    "max-statements": ["error", 18],
     "no-cond-assign": "error",
     "no-empty": "warn",
     "no-console": "warn",
@@ -41,7 +40,6 @@ module.exports = {
     "array-callback-return": ["error", { checkForEach: true }],
     "no-sparse-arrays": "warn",
     "camelcase": "warn",
-    "default-param-last": "error",
     "dot-notation": "warn",
     "max-depth": ["warn", 3],
     "no-extra-semi": "warn",

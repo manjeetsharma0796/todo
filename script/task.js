@@ -10,10 +10,10 @@ class Task {
   }
 
   getDetails() {
-    const description = this.description;
-    const taskID = this.taskID;
-    const isTaskCompleted = this.isTaskCompleted;
-
-    return { description, taskID, isTaskCompleted };
+    return {
+      description: this.description,
+      taskID: this.taskID,
+      isTaskCompleted: this.isTaskCompleted,
+    };
   }
 }
