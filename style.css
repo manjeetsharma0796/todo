@@ -18,7 +18,7 @@ body {
 .page {
   background-color: D4E2D4;
   border-radius: 0.6em;
-  padding-top: 2%;
+  padding: 2%;
 }
 
 header {
@@ -55,7 +55,7 @@ h1 {
 
 input {
   height: 2em;
-  padding: 0 .4em    ;
+  padding: 0 0.4em;
 }
 
 #task-details {
@@ -99,6 +99,7 @@ input {
 
 .flexRow {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .flexColumn {
@@ -129,6 +130,6 @@ input {
   margin: 1em auto;
 }
 
-h3{
-  font-size: 1.5em;
+h3 {
+  font-size: 1.3em;
 }

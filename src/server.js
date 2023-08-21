@@ -1,12 +1,9 @@
 const http = require("http");
-
-const handle = (request, response) => {
-  console.log(request.url);
-};
+const { handleRoute } = require("./handle-route");
 
 const main = () => {
   const port = 8000;
-  const server = http.createServer(handle);
+  const server = http.createServer(handleRoute);
 
   server.listen(port, () => console.log("Listening on", port));
 };

@@ -238,7 +238,8 @@ t1 =
 
 --------------------
 [*] retrieve from localStorage
-[] loading page from server side
+[*] loading page from server side
+[] order the directory structure
 [] how to maintain data on server side; is it file
 [] add element to delete todo
 
