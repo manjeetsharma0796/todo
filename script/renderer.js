@@ -7,7 +7,7 @@ class Renderer {
 
   #createTodoHeader(title) {
     const todoHeader = document.createElement("header");
-    const todoName = document.createElement("p");
+    const todoName = document.createElement("h3");
     todoName.innerText = title;
     todoHeader.append(todoName);
     return todoHeader;
@@ -180,9 +180,9 @@ class Renderer {
 
       const todoElement = this.#createTodoElement(todoID);
       const todoHeader = this.#createTodoHeader(title);
-      
+
       const addNewTaskSection = this.#createAddNewTaskSection(addTask, todoID);
-     
+
       const sortSection = this.#createSortSection(
         todoID,
         sortAlphabetical,

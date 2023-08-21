@@ -53,8 +53,9 @@ h1 {
   font-weight: 300;
 }
 
-.input {
-  height: 70%;
+input {
+  height: 2em;
+  padding: 0 .4em    ;
 }
 
 #task-details {
@@ -68,9 +69,7 @@ h1 {
 
 #todo-list {
   width: 80%;
-  border: 1px solid red;
   border-radius: 1em;
-  background-color: FFCACC;
   padding: 2em 4em;
   font-size: 1em;
   line-height: 3em;
@@ -87,12 +86,10 @@ h1 {
 
 .task {
   width: 130%;
-  border: 1px solid red;
   border-radius: 0.6em;
   justify-content: space-between;
   align-items: center;
   padding: 0 1em;
-  background-color: DBC4F0;
   margin-bottom: 1em;
 }
 
@@ -117,8 +114,11 @@ h1 {
 .main {
   background: floralwhite;
   border-radius: 1em;
-  border: 1px solid black;
   margin-bottom: 1em;
+}
+
+.task {
+  border-bottom: 1px solid grey;
 }
 
 #todo-section {
@@ -127,4 +127,8 @@ h1 {
   justify-content: center;
   column-gap: 2em;
   margin: 1em auto;
+}
+
+h3{
+  font-size: 1.5em;
 }
