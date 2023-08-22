@@ -1,8 +1,8 @@
-const setupCreateTodoButton = (createTodoButton, todos) => {
+const setupCreateTodoButton = (createTodoButton, todosController) => {
   createTodoButton.onclick = () => {
     const todoTitleElement = document.querySelector("#todo-title");
     const todoTitle = todoTitleElement.value;
-    todos.addTodo(todoTitle);
+    todosController.addTodo(todoTitle);
     todoTitleElement.value = "";
   };
 };
@@ -13,9 +13,10 @@ const main = () => {
 
   const renderer = new Renderer(todosContainer);
   const todoAppStorage = new TodoAppStorage();
-  const todos = new Todos(renderer, todoAppStorage);
-  setupCreateTodoButton(createTodoButton, todos);
-  todos.start();
+  const todos = new Todos();
+  const todosController = new TodosController(todos, renderer, todoAppStorage);
+  setupCreateTodoButton(createTodoButton, todosController);
+  todosController.start();
 };
 
 window.onload = main;

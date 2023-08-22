@@ -40,7 +40,6 @@ class Todo {
       taskID = this.#taskCount;
       this.#incrementTaskCount();
     }
-
     const task = new Task(description, taskID, isTaskCompleted);
     this.#tasks.push(task);
   }

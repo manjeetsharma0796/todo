@@ -5,6 +5,10 @@ class Renderer {
     this.#todosContainer = todosContainer;
   }
 
+  setListeners(listeners) {
+    this.listeners = listeners;
+  }
+
   #createTodoHeader(title) {
     const todoHeader = document.createElement("header");
     const todoName = document.createElement("h3");
@@ -13,7 +17,7 @@ class Renderer {
     return todoHeader;
   }
 
-  #createAddNewTaskSection(addTask, todoID) {
+  #createAddNewTaskSection(todoID) {
     const newTaskSection = document.createElement("section");
     newTaskSection.id = "input-section";
     newTaskSection.className = "flexRow";
@@ -31,7 +35,7 @@ class Renderer {
     newTaskButton.className = "input";
     newTaskButton.onclick = () => {
       const description = newTaskInput.value;
-      addTask(description, todoID);
+      this.listeners.addTask(description, todoID);
     };
 
     newTaskSection.append(newTaskInput, newTaskButton);
@@ -48,12 +52,7 @@ class Renderer {
     return button;
   }
 
-  #createSortSection(
-    todoID,
-    sortAlphabetical,
-    sortTaskByCreation,
-    sortTaskByCompletion
-  ) {
+  #createSortSection(todoID) {
     const sortSection = document.createElement("section");
     sortSection.className = "flexRow";
     sortSection.id = "sort-options";
@@ -65,7 +64,7 @@ class Renderer {
       "input"
     );
     sortAlphabeticalButton.onclick = () => {
-      sortAlphabetical(todoID);
+      this.listeners.sortAlphabetical(todoID);
     };
 
     const sortByCreationButton = this.#createButton(
@@ -75,7 +74,7 @@ class Renderer {
       "input"
     );
     sortByCreationButton.onclick = () => {
-      sortTaskByCreation(todoID);
+      this.listeners.sortTaskByCreation(todoID);
     };
 
     const sortStatusButton = this.#createButton(
@@ -85,7 +84,7 @@ class Renderer {
       "input"
     );
     sortStatusButton.onclick = () => {
-      sortTaskByCompletion(todoID);
+      this.listeners.sortTaskByCompletion(todoID);
     };
 
     sortSection.append(
@@ -113,14 +112,7 @@ class Renderer {
     return deleteButton;
   }
 
-  #createTaskElement({
-    description,
-    isTaskCompleted,
-    taskID,
-    todoID,
-    deleteTask,
-    toggleStatus,
-  }) {
+  #createTaskElement({ description, isTaskCompleted, taskID, todoID }) {
     const taskElement = document.createElement("section");
     taskElement.classList.add("flexRow", "task");
 
@@ -129,28 +121,23 @@ class Renderer {
 
     if (isTaskCompleted) task.classList.add("marked");
     task.onclick = () => {
-      toggleStatus(taskID, todoID);
+      this.listeners.toggleStatus(taskID, todoID);
     };
 
     const deleteButton = this.#createDeleteButton();
     deleteButton.onclick = () => {
-      deleteTask(taskID, todoID);
+      this.listeners.deleteTask(taskID, todoID);
     };
 
     taskElement.append(task, deleteButton);
     return taskElement;
   }
 
-  #renderTasks({ tasksContainer, tasks, todoID, deleteTask, toggleStatus }) {
+  #renderTasks({ tasksContainer, tasks, todoID }) {
     tasks.forEach((task) => {
-      const { taskID, description, isTaskCompleted } = task;
       const taskElement = this.#createTaskElement({
-        description,
-        isTaskCompleted,
-        taskID,
+        ...task,
         todoID,
-        deleteTask,
-        toggleStatus,
       });
 
       tasksContainer.append(taskElement);
@@ -164,39 +151,24 @@ class Renderer {
     return todoElement;
   }
 
-  renderTodo(todosDetails, callBack) {
-    const {
-      addTask,
-      deleteTask,
-      toggleStatus,
-      sortAlphabetical,
-      sortTaskByCreation,
-      sortTaskByCompletion,
-    } = callBack;
+  renderTodo(todosDetails) {
     this.#todosContainer.replaceChildren("");
 
     todosDetails.forEach((todoDetails) => {
       const { title, todoID, tasks } = todoDetails;
 
-      const todoElement = this.#createTodoElement(todoID);
+      const todoElement = this.#createTodoElement();
       const todoHeader = this.#createTodoHeader(title);
 
-      const addNewTaskSection = this.#createAddNewTaskSection(addTask, todoID);
+      const addNewTaskSection = this.#createAddNewTaskSection(todoID);
 
-      const sortSection = this.#createSortSection(
-        todoID,
-        sortAlphabetical,
-        sortTaskByCreation,
-        sortTaskByCompletion
-      );
+      const sortSection = this.#createSortSection(todoID);
       const tasksContainer = this.#createTasksContainer();
 
       this.#renderTasks({
         tasksContainer,
         tasks,
         todoID,
-        deleteTask,
-        toggleStatus,
       });
       todoElement.append(
         todoHeader,
