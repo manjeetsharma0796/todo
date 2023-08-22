@@ -1,30 +1,33 @@
 class Todo {
-  #tasks;
+  #title;
+  #todoID;
   #taskCount;
+  #tasks;
+  #sortBy;
 
   constructor(title, todoID) {
-    this.title = title;
-    this.todoID = todoID;
+    this.#title = title;
+    this.#todoID = todoID;
     this.#taskCount = 0;
     this.#tasks = [];
-    this.sortBy = this.sortByCreation;
+    this.#sortBy = this.#sortByCreation;
   }
 
   #incrementTaskCount() {
     this.#taskCount += 1;
   }
 
-  sortAlphabetical() {
+  #sortAlphabetical() {
     return this.#tasks.toSorted((task1, task2) =>
       task1.description < task2.description ? -1 : 1
     );
   }
 
-  sortByCreation() {
+  #sortByCreation() {
     return this.#tasks;
   }
 
-  sortByCompletion() {
+  #sortByCompletion() {
     return this.#tasks.toSorted((task1, task2) =>
       task1.isTaskCompleted < task2.isTaskCompleted ? -1 : 1
     );
@@ -32,13 +35,13 @@ class Todo {
 
   setSortBy(sortBy) {
     const sorts = {
-      sortAlphabetical: this.sortAlphabetical,
-      sortByCreation: this.sortByCreation,
-      sortByCompletion: this.sortByCompletion,
+      sortAlphabetical: this.#sortAlphabetical,
+      sortByCreation: this.#sortByCreation,
+      sortByCompletion: this.#sortByCompletion,
     };
 
     if (sortBy in sorts) {
-      this.sortBy = sorts[sortBy];
+      this.#sortBy = sorts[sortBy];
     }
   }
 
@@ -55,22 +58,22 @@ class Todo {
     );
   }
 
-  findTask(taskID) {
+  #findTask(taskID) {
     return this.#tasks.find((task) => taskID === task.getDetails().taskID);
   }
 
   toggleStatus(taskID) {
-    const task = this.findTask(taskID);
+    const task = this.#findTask(taskID);
     task.toggle();
   }
 
   getSortedDetails() {
-    const tasks = this.sortBy().reduce(
+    const tasks = this.#sortBy().reduce(
       (tasksDetails, task) => tasksDetails.concat(task.getDetails()),
       []
     );
 
-    return { todoID: this.todoID, title: this.title, tasks };
+    return { todoID: this.#todoID, title: this.#title, tasks };
   }
 
   getDetails() {
@@ -79,6 +82,6 @@ class Todo {
       []
     );
 
-    return { todoID: this.todoID, title: this.title, tasks };
+    return { todoID: this.#todoID, title: this.#title, tasks };
   }
 }

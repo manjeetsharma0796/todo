@@ -1,15 +1,18 @@
 class Todos {
+  #todoCount;
+  #todoList;
+
   constructor() {
-    this.todoCount = 0;
-    this.todoList = [];
+    this.#todoCount = 0;
+    this.#todoList = [];
   }
 
   #incrementTodoCount() {
-    this.todoCount += 1;
+    this.#todoCount += 1;
   }
 
   #findTodo(todoID) {
-    return this.todoList.find((todo) => todo.getDetails().todoID === todoID);
+    return this.#todoList.find((todo) => todo.getDetails().todoID === todoID);
   }
 
   addTask(description, todoID, isTaskCompleted) {
@@ -18,10 +21,10 @@ class Todos {
   }
 
   addTodo(title) {
-    const todoID = this.todoCount;
+    const todoID = this.#todoCount;
     const todo = new Todo(title, todoID);
 
-    this.todoList.push(todo);
+    this.#todoList.push(todo);
     this.#incrementTodoCount();
   }
 
@@ -62,14 +65,14 @@ class Todos {
   }
 
   getSortedDetails() {
-    return this.todoList.reduce(
+    return this.#todoList.reduce(
       (todosDetails, todo) => todosDetails.concat(todo.getSortedDetails()),
       []
     );
   }
 
   getDetails() {
-    return this.todoList.reduce(
+    return this.#todoList.reduce(
       (todosDetails, todo) => todosDetails.concat(todo.getDetails()),
       []
     );
