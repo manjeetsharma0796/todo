@@ -43,17 +43,12 @@ const readFile = (path, request, response, onData) => {
   });
 };
 
-const handleHome = (request, response) => {
-  const path = "index.html";
-  readFile(path, request, response, render);
-};
-
 const handleFileRequest = (request, response) => {
-  const path = request.url.replace("/", "");
+  const path =
+    request.url === "/" ? "./public/index.html" : `./public${request.url}`;
   readFile(path, request, response, render);
 };
 
 module.exports = {
-  handleHome,
   handleFileRequest,
 };

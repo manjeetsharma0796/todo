@@ -98,7 +98,6 @@ class Renderer {
 
   #createTasksContainer() {
     const todoContainer = document.createElement("article");
-    todoContainer.removeChild("");
     todoContainer.id = "todo-list";
     todoContainer.classList.add("scroll", "flexColumn");
 

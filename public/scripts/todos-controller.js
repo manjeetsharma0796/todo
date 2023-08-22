@@ -38,6 +38,7 @@ class TodosController {
   }
 
   addTodo(title, oldTodoID) {
+    console.log(title);
     this.#todos.addTodo(title, oldTodoID);
     this.#store(this.getDetails());
     this.#renderer.renderTodo(this.getSortedDetails());

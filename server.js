@@ -1,5 +1,5 @@
 const http = require("http");
-const { handleRoute } = require("./handle-route");
+const { handleRoute } = require("./src/handle-route");
 
 const main = () => {
   const port = 8000;

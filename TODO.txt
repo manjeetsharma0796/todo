@@ -245,3 +245,14 @@ issue in storing task, on refreshing it removes tasks
 [] modifying the todo data while sorting - fix that
 [] extra unnecessary params send for retrieving tasks
 [] 
+
+handlers = [{method:"POST, route:"^/$", handler:handleHome}, {method:"POST", route:"^/?", handler:handleHome}, {method:"ALL", route:".*", handler:handleNotFound} ]
+
+const  = handlers.find(handler => {
+  const route = new RegExp(handler.route)
+  route.test(request.url) && request.method === handler.method
+  })
+
+  const 
+
+handler(request, response)
