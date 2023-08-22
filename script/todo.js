@@ -7,6 +7,7 @@ class Todo {
     this.todoID = todoID;
     this.#taskCount = 0;
     this.#tasks = [];
+    this.sortBy = this.sortByCreation;
   }
 
   #incrementTaskCount() {
@@ -14,34 +15,38 @@ class Todo {
   }
 
   sortAlphabetical() {
-    this.#tasks.sort((task1, task2) =>
+    return this.#tasks.toSorted((task1, task2) =>
       task1.description < task2.description ? -1 : 1
     );
   }
 
   sortByCreation() {
-    this.#tasks.sort((task1, task2) => task1.taskID - task2.taskID);
+    return this.#tasks;
   }
 
   sortByCompletion() {
-    this.#tasks.sort((task1, task2) =>
+    return this.#tasks.toSorted((task1, task2) =>
       task1.isTaskCompleted < task2.isTaskCompleted ? -1 : 1
     );
   }
 
-  updateTaskCount(taskID) {
-    this.#taskCount = this.#taskCount <= taskID ? taskID + 1 : this.#taskCount;
+  setSortBy(sortBy) {
+    const sorts = {
+      sortAlphabetical: this.sortAlphabetical,
+      sortByCreation: this.sortByCreation,
+      sortByCompletion: this.sortByCompletion,
+    };
+
+    if (sortBy in sorts) {
+      this.sortBy = sorts[sortBy];
+    }
   }
 
-  addTask(description, isTaskCompleted, oldtaskID) {
-    let taskID = oldtaskID;
-
-    if (!oldtaskID) {
-      taskID = this.#taskCount;
-      this.#incrementTaskCount();
-    }
+  addTask(description, isTaskCompleted) {
+    const taskID = this.#taskCount;
     const task = new Task(description, taskID, isTaskCompleted);
     this.#tasks.push(task);
+    this.#incrementTaskCount();
   }
 
   deleteTask(taskID) {
@@ -57,6 +62,15 @@ class Todo {
   toggleStatus(taskID) {
     const task = this.findTask(taskID);
     task.toggle();
+  }
+
+  getSortedDetails() {
+    const tasks = this.sortBy().reduce(
+      (tasksDetails, task) => tasksDetails.concat(task.getDetails()),
+      []
+    );
+
+    return { todoID: this.todoID, title: this.title, tasks };
   }
 
   getDetails() {

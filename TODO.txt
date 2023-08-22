@@ -240,3 +240,8 @@ t1 =
 [] add element to delete todo
 
 issue in storing task, on refreshing it removes tasks
+-------------------
+
+[] modifying the todo data while sorting - fix that
+[] extra unnecessary params send for retrieving tasks
+[] 

@@ -12,21 +12,17 @@ class Todos {
     return this.todoList.find((todo) => todo.getDetails().todoID === todoID);
   }
 
-  addTask(description, todoID, isTaskCompleted, taskID) {
+  addTask(description, todoID, isTaskCompleted) {
     const todo = this.#findTodo(todoID);
-    todo.addTask(description, isTaskCompleted, taskID);
+    todo.addTask(description, isTaskCompleted);
   }
 
-  addTodo(title, oldTodoID) {
-    let todoID = oldTodoID;
-
-    if (!oldTodoID) {
-      todoID = this.todoCount;
-      this.#incrementTodoCount();
-    }
-
+  addTodo(title) {
+    const todoID = this.todoCount;
     const todo = new Todo(title, todoID);
+
     this.todoList.push(todo);
+    this.#incrementTodoCount();
   }
 
   deleteTask(taskID, todoID) {
@@ -41,45 +37,41 @@ class Todos {
 
   sortTaskAlphabetical(todoID) {
     const todo = this.#findTodo(todoID);
-    todo.sortAlphabetical();
+    todo.setSortBy("sortAlphabetical");
   }
 
   sortTaskByCreation(todoID) {
     const todo = this.#findTodo(todoID);
-    todo.sortByCreation();
+    todo.setSortBy("sortByCreation");
   }
 
   sortTaskByCompletion(todoID) {
     const todo = this.#findTodo(todoID);
-    todo.sortByCompletion();
+    todo.setSortBy("sortByCompletion");
   }
 
-  restoreTodo(title, todoID) {
-    this.addTodo(title, todoID);
+  restoreTodo(title) {
+    this.addTodo(title);
   }
 
   restoreTasks(tasks, todoID) {
-    const todo = this.#findTodo(todoID);
-
     tasks.forEach((task) => {
-      const { taskID, description, isTaskCompleted } = task;
-      todo.updateTaskCount(taskID);
-      todo.addTask(description);
-
-      this.addTask(description, todoID, isTaskCompleted, taskID);
+      const { description, isTaskCompleted } = task;
+      this.addTask(description, todoID, isTaskCompleted);
     });
   }
 
-  updateTodoCount(todoID) {
-    this.todoCount = this.todoCount <= todoID ? todoID + 1 : this.todoCount;
+  getSortedDetails() {
+    return this.todoList.reduce(
+      (todosDetails, todo) => todosDetails.concat(todo.getSortedDetails()),
+      []
+    );
   }
 
   getDetails() {
-    const todos = this.todoList.reduce(
+    return this.todoList.reduce(
       (todosDetails, todo) => todosDetails.concat(todo.getDetails()),
       []
     );
-
-    return todos;
   }
 }

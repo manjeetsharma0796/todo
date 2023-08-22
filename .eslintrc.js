@@ -4,6 +4,7 @@ module.exports = {
   },
 
   rules: {
+    "no-unused-vars": "error",
     "semi": ["error", "always", { omitLastInOneLineBlock: true }],
     "quotes": ["error", "double"],
     "indent": ["error", 2, { SwitchCase: 1 }],
@@ -20,8 +21,6 @@ module.exports = {
     "no-shadow": "error",
     "id-denylist": ["error", "data", "callback"],
     "no-extra-semi": "error",
-
-    "semi": ["error", "always", { omitLastInOneLineBlock: true }],
     "quotes": ["error", "double"],
     "indent": ["error", 2, { SwitchCase: 1 }],
     "no-console": "warn",
@@ -64,13 +63,5 @@ module.exports = {
     "object-shorthand": "error",
     "array-callback-return": ["error", { checkForEach: true }],
     "prefer-template": "warn",
-    "no-useless-concat": "error",
-    "func-style": ["error", "expression"],
-    "prefer-rest-params": "error",
-    "for-direction": "error",
-    "id-length": [
-      "error",
-      { exceptions: ["a", "b", "x", "y", "z", "_"], min: 2, max: 28 },
-    ],
   },
 };
