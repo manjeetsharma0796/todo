@@ -32,4 +32,16 @@ class WebClient {
       }
     });
   }
+
+  deleteTask(taskID, todoID, onResponse) {
+    const request = {
+      method: "DELETE",
+    };
+
+    fetch(`/todos/todo/${todoID}/task/${taskID}`, request).then((res) => {
+      if (res.status === 204) {
+        onResponse();
+      }
+    });
+  }
 }

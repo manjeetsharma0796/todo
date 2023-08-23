@@ -18,7 +18,7 @@ class Todos {
   }
 
   addTask(description, todoID, isTaskCompleted) {
-    const todo = this.#findTodo(+todoID);
+    const todo = this.#findTodo(todoID);
     todo.addTask(description, isTaskCompleted);
   }
 

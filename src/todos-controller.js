@@ -26,9 +26,9 @@ class TodosController {
     this.#todoAppStorage.store(this.getDetails(), responseHandlers);
   }
 
-  deleteTask(taskID, todoID) {
+  deleteTask(taskID, todoID, responseHandlers) {
     this.#todos.deleteTask(taskID, todoID);
-    this.#store(this.getDetails());
+    this.#todoAppStorage.store(this.getDetails(), responseHandlers);
   }
 
   restoreTodos(todosDetails) {

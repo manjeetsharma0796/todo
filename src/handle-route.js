@@ -6,8 +6,8 @@ const logRequest = (request, _, next) => {
   next();
 };
 
-const onSuccess = (_, res) => {
-  res.status(201).end();
+const onSuccess = (_, res, status) => {
+  res.status(status).end();
 };
 
 const onError = (_, res) => {
@@ -22,7 +22,7 @@ const serveHomePage = (_, res) => {
 const handleAddTodo = (req, res) => {
   const { todoController } = req.app;
   const resposneHandlers = {
-    onSuccess: () => onSuccess(req, res),
+    onSuccess: () => onSuccess(req, res, 201),
     onError: () => onError(req, res),
   };
 
@@ -31,16 +31,31 @@ const handleAddTodo = (req, res) => {
 
 const handleAddTask = (req, res) => {
   const { todoController } = req.app;
-  const resposneHandlers = {
-    onSuccess: () => onSuccess(req, res),
+  const responseHandlers = {
+    onSuccess: () => onSuccess(req, res, 201),
     onError: () => onError(req, res),
   };
 
   todoController.addTask(
     req.body.description,
-    req.params.todoID,
+    parseInt(req.params.todoID),
     false,
-    resposneHandlers
+    responseHandlers
+  );
+};
+
+const handleDeleteTask = (req, res) => {
+  const { todoController } = req.app;
+  const { todoID, taskID } = req.params;
+  const responseHandlers = {
+    onSuccess: () => onSuccess(req, res, 204),
+    onError: () => onError(req, res),
+  };
+
+  todoController.deleteTask(
+    parseInt(taskID),
+    parseInt(todoID),
+    responseHandlers
   );
 };
 
@@ -54,6 +69,7 @@ const createAndSetupApp = (todoController) => {
   app.get("/", serveHomePage);
   app.post("/todos/todo", handleAddTodo);
   app.post("/todos/todo/:todoID/task", handleAddTask);
+  app.delete("/todos/todo/:todoID/task/:taskID", handleDeleteTask);
   app.use(express.static("public"));
 
   return app;

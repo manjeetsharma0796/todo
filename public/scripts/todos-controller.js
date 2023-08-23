@@ -56,9 +56,11 @@ class TodosController {
   }
 
   #deleteTask(taskID, todoID) {
-    this.#todos.deleteTask(taskID, todoID);
-    this.#store(this.getDetails());
-    this.#renderer.renderTodo(this.getSortedDetails());
+    this.#webClient.deleteTask(taskID, todoID, () => {
+      this.#todos.deleteTask(taskID, todoID);
+      this.#store(this.getDetails());
+      this.#renderer.renderTodo(this.getSortedDetails());
+    });
   }
 
   #restoreTodos(todosDetails) {
