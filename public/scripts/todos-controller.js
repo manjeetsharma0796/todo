@@ -2,11 +2,13 @@ class TodosController {
   #todos;
   #renderer;
   #todoAppStorage;
+  #webClient;
 
-  constructor(todos, renderer, todoAppStorage) {
+  constructor(todos, renderer, todoAppStorage, webClient) {
     this.#todos = todos;
     this.#renderer = renderer;
     this.#todoAppStorage = todoAppStorage;
+    this.#webClient = webClient;
   }
 
   #store(todosDetails) {
@@ -37,11 +39,12 @@ class TodosController {
     this.#renderer.renderTodo(this.getSortedDetails());
   }
 
-  addTodo(title, oldTodoID) {
-    console.log(title);
-    this.#todos.addTodo(title, oldTodoID);
-    this.#store(this.getDetails());
-    this.#renderer.renderTodo(this.getSortedDetails());
+  addTodo(title) {
+    this.#webClient.addTodo(title, () => {
+      this.#todos.addTodo(title);
+      this.#store(this.getDetails());
+      this.#renderer.renderTodo(this.getSortedDetails());
+    });
   }
 
   #addTask(description, todoID, isTaskCompleted = false) {
@@ -82,7 +85,7 @@ class TodosController {
     const todosDetails = this.#todoAppStorage.todosSession;
     this.#setListeners();
     this.#restoreTodos(todosDetails);
-    this.#store(this.getDetails());
+    // this.#store(this.getDetails());
     this.#renderer.renderTodo(this.getSortedDetails());
   }
 

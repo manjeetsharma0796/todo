@@ -1,7 +1,45 @@
-const { handleFileRequest } = require("./handlers");
+const express = require("express");
+const ROOT = "/Users/manjeet/workspace/html/assignment/todo-manjeetsharma0796";
 
-const handleRoute = (request, response) => {
-  handleFileRequest(request, response);
+const logRequest = (request, _, next) => {
+  console.log(request.method, request.url);
+  next();
 };
 
-module.exports = { handleRoute };
+const onSuccess = (_, res) => {
+  res.status(201).end();
+};
+
+const onError = (_, res) => {
+  res.status(500).end();
+};
+
+const serveHomePage = (_, res) => {
+  const filePath = `${ROOT}/public/index.html`;
+  res.sendFile(filePath);
+};
+
+const handleAddTodo = (req, res) => {
+  const { todoController } = req.app;
+  todoController.addTodo(
+    req.body.title,
+    () => onSuccess(req, res),
+    () => onError(req, res)
+  );
+};
+
+const createAndSetupApp = (todoController) => {
+  const app = express();
+  app.todoController = todoController;
+
+  app.use(logRequest);
+  app.use(express.json());
+
+  app.get("/", serveHomePage);
+  app.post("/todos/todo", handleAddTodo);
+  app.use(express.static("public"));
+
+  return app;
+};
+
+module.exports = { createAndSetupApp };

@@ -14,7 +14,13 @@ const main = () => {
   const renderer = new Renderer(todosContainer);
   const todoAppStorage = new TodoAppStorage();
   const todos = new Todos();
-  const todosController = new TodosController(todos, renderer, todoAppStorage);
+  const webClient = new WebClient();
+  const todosController = new TodosController(
+    todos,
+    renderer,
+    todoAppStorage,
+    webClient
+  );
   setupCreateTodoButton(createTodoButton, todosController);
   todosController.start();
 };
