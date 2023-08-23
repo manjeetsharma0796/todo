@@ -77,4 +77,9 @@ class Todos {
       []
     );
   }
+
+  getTaskDetails(todoID, taskID) {
+    const todo = this.#findTodo(todoID);
+    return todo.getTaskDetails(taskID);
+  }
 }

@@ -77,11 +77,13 @@ class Todo {
   }
 
   getDetails() {
-    const tasks = this.#tasks.reduce(
-      (tasksDetails, task) => tasksDetails.concat(task.getDetails()),
-      []
-    );
+    const tasks = this.#tasks.map((task) => task.getDetails());
 
     return { todoID: this.#todoID, title: this.#title, tasks };
+  }
+
+  getTaskDetails(taskID) {
+    const task = this.#findTask(taskID);
+    return task.getDetails();
   }
 }

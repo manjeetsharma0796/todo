@@ -64,9 +64,9 @@ class Todo {
     return this.#tasks.find((task) => taskID === task.getDetails().taskID);
   }
 
-  toggleStatus(taskID) {
+  patchTaskStatus(taskID, taskStatus) {
     const task = this.#findTask(taskID);
-    task.toggle();
+    task.patchStatus(taskStatus);
   }
 
   getSortedDetails() {

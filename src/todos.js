@@ -35,9 +35,9 @@ class Todos {
     todo.deleteTask(taskID);
   }
 
-  toggleStatus(taskID, todoID) {
+  patchTaskStatus(taskID, todoID, taskStatus) {
     const todo = this.#findTodo(todoID);
-    todo.toggleStatus(taskID);
+    todo.patchTaskStatus(taskID, taskStatus);
   }
 
   sortTaskAlphabetical(todoID) {
@@ -74,10 +74,7 @@ class Todos {
   }
 
   getDetails() {
-    return this.#todoList.reduce(
-      (todosDetails, todo) => todosDetails.concat(todo.getDetails()),
-      []
-    );
+    return this.#todoList.map((todo) => todo.getDetails());
   }
 }
 

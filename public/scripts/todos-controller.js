@@ -16,33 +16,37 @@ class TodosController {
   }
 
   #toggleStatus(taskID, todoID) {
-    this.#todos.toggleStatus(taskID, todoID);
-    this.#store(this.getDetails());
-    this.#renderer.renderTodo(this.getSortedDetails());
+    const { isTaskCompleted } = this.#todos.getTaskDetails(todoID, taskID);
+
+    this.#webClient.toggleStatus(taskID, todoID, !isTaskCompleted, () => {
+      this.#todos.toggleStatus(taskID, todoID);
+      this.#store(this.#todos.getDetails());
+      this.#renderer.renderTodo(this.getSortedDetails());
+    });
   }
 
   #sortTaskAlphabetical(todoID) {
     this.#todos.sortTaskAlphabetical(todoID);
-    this.#store(this.getDetails());
+    this.#store(this.#todos.getDetails());
     this.#renderer.renderTodo(this.getSortedDetails());
   }
 
   #sortTaskByCreation(todoID) {
     this.#todos.sortTaskByCreation(todoID);
-    this.#store(this.getDetails());
+    this.#store(this.#todos.getDetails());
     this.#renderer.renderTodo(this.getSortedDetails());
   }
 
   #sortTaskByCompletion(todoID) {
     this.#todos.sortTaskByCompletion(todoID);
-    this.#store(this.getDetails());
+    this.#store(this.#todos.getDetails());
     this.#renderer.renderTodo(this.getSortedDetails());
   }
 
   addTodo(title) {
     this.#webClient.addTodo(title, () => {
       this.#todos.addTodo(title);
-      this.#store(this.getDetails());
+      this.#store(this.#todos.getDetails());
       this.#renderer.renderTodo(this.getSortedDetails());
     });
   }
@@ -50,7 +54,7 @@ class TodosController {
   #addTask(description, todoID, isTaskCompleted = false) {
     this.#webClient.addTask(description, todoID, () => {
       this.#todos.addTask(description, todoID, isTaskCompleted);
-      this.#store(this.getDetails());
+      this.#store(this.#todos.getDetails());
       this.#renderer.renderTodo(this.getSortedDetails());
     });
   }
@@ -58,7 +62,7 @@ class TodosController {
   #deleteTask(taskID, todoID) {
     this.#webClient.deleteTask(taskID, todoID, () => {
       this.#todos.deleteTask(taskID, todoID);
-      this.#store(this.getDetails());
+      this.#store(this.#todos.getDetails());
       this.#renderer.renderTodo(this.getSortedDetails());
     });
   }
@@ -94,9 +98,5 @@ class TodosController {
 
   getSortedDetails() {
     return [...this.#todos.getSortedDetails()];
-  }
-
-  getDetails() {
-    return [...this.#todos.getDetails()];
   }
 }

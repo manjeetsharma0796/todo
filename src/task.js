@@ -9,8 +9,8 @@ class Task {
     this.#taskID = taskID;
   }
 
-  toggle() {
-    this.#isTaskCompleted = !this.#isTaskCompleted;
+  patchStatus(taskStatus) {
+    this.#isTaskCompleted = taskStatus;
   }
 
   getDetails() {

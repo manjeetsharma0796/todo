@@ -7,13 +7,9 @@ class TodosController {
     this.#todoAppStorage = todoAppStorage;
   }
 
-  #store(todosDetails) {
-    this.#todoAppStorage.store(todosDetails);
-  }
-
-  toggleStatus(taskID, todoID) {
-    this.#todos.toggleStatus(taskID, todoID);
-    this.#store(this.getDetails());
+  patchTaskStatus(taskID, todoID, taskStatus, responseHandlers) {
+    this.#todos.patchTaskStatus(taskID, todoID, taskStatus);
+    this.#todoAppStorage.store(this.getDetails(), responseHandlers);
   }
 
   addTodo(title, responseHandlers) {

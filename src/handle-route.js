@@ -59,6 +59,22 @@ const handleDeleteTask = (req, res) => {
   );
 };
 
+const handleToggleTask = (req, res) => {
+  const { todoController } = req.app;
+  const { todoID, taskID } = req.params;
+  const responseHandlers = {
+    onSuccess: () => onSuccess(req, res, 204),
+    onError: () => onError(req, res),
+  };
+  
+  todoController.patchTaskStatus(
+    parseInt(taskID),
+    parseInt(todoID),
+    req.body.isTaskCompleted,
+    responseHandlers
+  );
+};
+
 const createAndSetupApp = (todoController) => {
   const app = express();
   app.todoController = todoController;
@@ -69,6 +85,7 @@ const createAndSetupApp = (todoController) => {
   app.get("/", serveHomePage);
   app.post("/todos/todo", handleAddTodo);
   app.post("/todos/todo/:todoID/task", handleAddTask);
+  app.patch("/todos/todo/:todoID/task/:taskID", handleToggleTask);
   app.delete("/todos/todo/:todoID/task/:taskID", handleDeleteTask);
   app.use(express.static("public"));
 
