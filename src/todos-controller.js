@@ -16,14 +16,14 @@ class TodosController {
     this.#store(this.getDetails());
   }
 
-  addTodo(title, onSuccess, onError) {
+  addTodo(title, responseHandlers) {
     this.#todos.addTodo(title);
-    this.#todoAppStorage.store(this.getDetails(), onSuccess, onError);
+    this.#todoAppStorage.store(this.getDetails(), responseHandlers);
   }
 
-  addTask(description, todoID, isTaskCompleted = false) {
+  addTask(description, todoID, isTaskCompleted, responseHandlers) {
     this.#todos.addTask(description, todoID, isTaskCompleted);
-    this.#store(this.getDetails());
+    this.#todoAppStorage.store(this.getDetails(), responseHandlers);
   }
 
   deleteTask(taskID, todoID) {

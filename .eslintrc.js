@@ -35,7 +35,7 @@ module.exports = {
     "no-multi-spaces": ["error"],
     "prefer-const": ["error"],
     "prefer-destructuring": ["error"],
-    "max-params": ["error", 4],
+    "max-params": ["error", 5],
     "no-use-before-define": ["error"],
     "no-this-before-super": ["error"],
     "max-nested-callbacks": ["error", { max: 2 }],

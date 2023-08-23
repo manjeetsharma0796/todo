@@ -21,10 +21,26 @@ const serveHomePage = (_, res) => {
 
 const handleAddTodo = (req, res) => {
   const { todoController } = req.app;
-  todoController.addTodo(
-    req.body.title,
-    () => onSuccess(req, res),
-    () => onError(req, res)
+  const resposneHandlers = {
+    onSuccess: () => onSuccess(req, res),
+    onError: () => onError(req, res),
+  };
+
+  todoController.addTodo(req.body.title, resposneHandlers);
+};
+
+const handleAddTask = (req, res) => {
+  const { todoController } = req.app;
+  const resposneHandlers = {
+    onSuccess: () => onSuccess(req, res),
+    onError: () => onError(req, res),
+  };
+
+  todoController.addTask(
+    req.body.description,
+    req.params.todoID,
+    false,
+    resposneHandlers
   );
 };
 
@@ -37,6 +53,7 @@ const createAndSetupApp = (todoController) => {
 
   app.get("/", serveHomePage);
   app.post("/todos/todo", handleAddTodo);
+  app.post("/todos/todo/:todoID/task", handleAddTask);
   app.use(express.static("public"));
 
   return app;

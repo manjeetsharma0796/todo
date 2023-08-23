@@ -7,7 +7,7 @@ class TodoStorage {
     this.#storagePath = storagePath;
   }
 
-  store(todosDetails, onSuccess, onError) {
+  store(todosDetails, { onSuccess, onError }) {
     this.#fs.writeFile(
       this.#storagePath,
       JSON.stringify(todosDetails),

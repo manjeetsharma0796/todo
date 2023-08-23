@@ -16,4 +16,20 @@ class WebClient {
       }
     });
   }
+
+  addTask(description, todoID, onResponse) {
+    const request = {
+      method: "POST",
+      body: JSON.stringify({ description }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    fetch(`/todos/todo/${todoID}/task`, request).then((res) => {
+      if (res.status === 201) {
+        onResponse();
+      }
+    });
+  }
 }

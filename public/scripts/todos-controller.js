@@ -48,9 +48,11 @@ class TodosController {
   }
 
   #addTask(description, todoID, isTaskCompleted = false) {
-    this.#todos.addTask(description, todoID, isTaskCompleted);
-    this.#store(this.getDetails());
-    this.#renderer.renderTodo(this.getSortedDetails());
+    this.#webClient.addTask(description, todoID, () => {
+      this.#todos.addTask(description, todoID, isTaskCompleted);
+      this.#store(this.getDetails());
+      this.#renderer.renderTodo(this.getSortedDetails());
+    });
   }
 
   #deleteTask(taskID, todoID) {
@@ -85,7 +87,6 @@ class TodosController {
     const todosDetails = this.#todoAppStorage.todosSession;
     this.#setListeners();
     this.#restoreTodos(todosDetails);
-    // this.#store(this.getDetails());
     this.#renderer.renderTodo(this.getSortedDetails());
   }
 
