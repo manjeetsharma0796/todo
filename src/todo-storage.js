@@ -7,6 +7,10 @@ class TodoStorage {
     this.#storagePath = storagePath;
   }
 
+  #isFileExists() {
+    return this.#fs.existsSync(this.#storagePath);
+  }
+
   store(todosDetails, { onSuccess, onError }) {
     this.#fs.writeFile(
       this.#storagePath,
@@ -20,6 +24,15 @@ class TodoStorage {
         onSuccess();
       }
     );
+  }
+
+  restore(onData) {
+    if (!this.#isFileExists()) {
+      this.#fs.writeFileSync(this.#storagePath, "[]");
+    }
+
+    const rawTodos = this.#fs.readFileSync(this.#storagePath, "utf-8");
+    onData(JSON.parse(rawTodos));
   }
 }
 

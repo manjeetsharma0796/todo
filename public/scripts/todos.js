@@ -65,17 +65,11 @@ class Todos {
   }
 
   getSortedDetails() {
-    return this.#todoList.reduce(
-      (todosDetails, todo) => todosDetails.concat(todo.getSortedDetails()),
-      []
-    );
+    return this.#todoList.map((todo) => todo.getSortedDetails());
   }
 
   getDetails() {
-    return this.#todoList.reduce(
-      (todosDetails, todo) => todosDetails.concat(todo.getDetails()),
-      []
-    );
+    return this.#todoList.map((todo) => todo.getDetails());
   }
 
   getTaskDetails(todoID, taskID) {

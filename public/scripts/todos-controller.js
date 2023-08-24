@@ -1,18 +1,12 @@
 class TodosController {
   #todos;
   #renderer;
-  #todoAppStorage;
   #webClient;
 
-  constructor(todos, renderer, todoAppStorage, webClient) {
+  constructor(todos, renderer, webClient) {
     this.#todos = todos;
     this.#renderer = renderer;
-    this.#todoAppStorage = todoAppStorage;
     this.#webClient = webClient;
-  }
-
-  #store(todosDetails) {
-    this.#todoAppStorage.store(todosDetails);
   }
 
   #toggleStatus(taskID, todoID) {
@@ -20,50 +14,43 @@ class TodosController {
 
     this.#webClient.toggleStatus(taskID, todoID, !isTaskCompleted, () => {
       this.#todos.toggleStatus(taskID, todoID);
-      this.#store(this.#todos.getDetails());
-      this.#renderer.renderTodo(this.getSortedDetails());
+      this.#renderer.renderTodo(this.#todos.getSortedDetails());
     });
   }
 
   #sortTaskAlphabetical(todoID) {
     this.#todos.sortTaskAlphabetical(todoID);
-    this.#store(this.#todos.getDetails());
-    this.#renderer.renderTodo(this.getSortedDetails());
+    this.#renderer.renderTodo(this.#todos.getSortedDetails());
   }
 
   #sortTaskByCreation(todoID) {
     this.#todos.sortTaskByCreation(todoID);
-    this.#store(this.#todos.getDetails());
-    this.#renderer.renderTodo(this.getSortedDetails());
+    this.#renderer.renderTodo(this.#todos.getSortedDetails());
   }
 
   #sortTaskByCompletion(todoID) {
     this.#todos.sortTaskByCompletion(todoID);
-    this.#store(this.#todos.getDetails());
-    this.#renderer.renderTodo(this.getSortedDetails());
+    this.#renderer.renderTodo(this.#todos.getSortedDetails());
   }
 
   addTodo(title) {
     this.#webClient.addTodo(title, () => {
       this.#todos.addTodo(title);
-      this.#store(this.#todos.getDetails());
-      this.#renderer.renderTodo(this.getSortedDetails());
+      this.#renderer.renderTodo(this.#todos.getSortedDetails());
     });
   }
 
   #addTask(description, todoID, isTaskCompleted = false) {
     this.#webClient.addTask(description, todoID, () => {
       this.#todos.addTask(description, todoID, isTaskCompleted);
-      this.#store(this.#todos.getDetails());
-      this.#renderer.renderTodo(this.getSortedDetails());
+      this.#renderer.renderTodo(this.#todos.getSortedDetails());
     });
   }
 
   #deleteTask(taskID, todoID) {
     this.#webClient.deleteTask(taskID, todoID, () => {
       this.#todos.deleteTask(taskID, todoID);
-      this.#store(this.#todos.getDetails());
-      this.#renderer.renderTodo(this.getSortedDetails());
+      this.#renderer.renderTodo(this.#todos.getSortedDetails());
     });
   }
 
@@ -90,13 +77,12 @@ class TodosController {
   }
 
   start() {
-    const todosDetails = this.#todoAppStorage.todosSession;
     this.#setListeners();
-    this.#restoreTodos(todosDetails);
-    this.#renderer.renderTodo(this.getSortedDetails());
+    this.#webClient.restoreTodos((todosDetails) => {
+      this.#restoreTodos(todosDetails);
+      this.#renderer.renderTodo(this.#todos.getSortedDetails());
+    });
   }
 
-  getSortedDetails() {
-    return [...this.#todos.getSortedDetails()];
-  }
+ 
 }

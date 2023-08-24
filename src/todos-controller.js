@@ -7,27 +7,7 @@ class TodosController {
     this.#todoAppStorage = todoAppStorage;
   }
 
-  patchTaskStatus(taskID, todoID, taskStatus, responseHandlers) {
-    this.#todos.patchTaskStatus(taskID, todoID, taskStatus);
-    this.#todoAppStorage.store(this.getDetails(), responseHandlers);
-  }
-
-  addTodo(title, responseHandlers) {
-    this.#todos.addTodo(title);
-    this.#todoAppStorage.store(this.getDetails(), responseHandlers);
-  }
-
-  addTask(description, todoID, isTaskCompleted, responseHandlers) {
-    this.#todos.addTask(description, todoID, isTaskCompleted);
-    this.#todoAppStorage.store(this.getDetails(), responseHandlers);
-  }
-
-  deleteTask(taskID, todoID, responseHandlers) {
-    this.#todos.deleteTask(taskID, todoID);
-    this.#todoAppStorage.store(this.getDetails(), responseHandlers);
-  }
-
-  restoreTodos(todosDetails) {
+  #restoreTodos(todosDetails) {
     todosDetails.forEach((todo) => {
       const { todoID, title, tasks } = todo;
       this.#todos.restoreTodo(title, todoID);
@@ -35,17 +15,34 @@ class TodosController {
     });
   }
 
-  start() {
-    const todosDetails = this.#todoAppStorage.todosSession;
-    this.restoreTodos(todosDetails);
+  patchTaskStatus(taskID, todoID, taskStatus, responseHandlers) {
+    this.#todos.patchTaskStatus(taskID, todoID, taskStatus);
+    this.#todoAppStorage.store(this.#todos.getDetails(), responseHandlers);
   }
 
-  getSortedDetails() {
-    return [...this.#todos.getSortedDetails()];
+  addTodo(title, responseHandlers) {
+    this.#todos.addTodo(title);
+    this.#todoAppStorage.store(this.#todos.getDetails(), responseHandlers);
+  }
+
+  addTask(description, todoID, isTaskCompleted, responseHandlers) {
+    this.#todos.addTask(description, todoID, isTaskCompleted);
+    this.#todoAppStorage.store(this.#todos.getDetails(), responseHandlers);
+  }
+
+  deleteTask(taskID, todoID, responseHandlers) {
+    this.#todos.deleteTask(taskID, todoID);
+    this.#todoAppStorage.store(this.#todos.getDetails(), responseHandlers);
   }
 
   getDetails() {
-    return [...this.#todos.getDetails()];
+    return this.#todos.getDetails();
+  }
+
+  start() {
+    this.#todoAppStorage.restore((todosDetails) => {
+      this.#restoreTodos(todosDetails);
+    });
   }
 }
 

@@ -11,9 +11,7 @@ class WebClient {
     };
 
     fetch("/todos/todo", request).then((res) => {
-      if (res.status === 201) {
-        onResponse();
-      }
+      if (res.status === 201) onResponse();
     });
   }
 
@@ -27,9 +25,7 @@ class WebClient {
     };
 
     fetch(`/todos/todo/${todoID}/task`, request).then((res) => {
-      if (res.status === 201) {
-        onResponse();
-      }
+      if (res.status === 201) onResponse();
     });
   }
 
@@ -39,9 +35,7 @@ class WebClient {
     };
 
     fetch(`/todos/todo/${todoID}/task/${taskID}`, request).then((res) => {
-      if (res.status === 204) {
-        onResponse();
-      }
+      if (res.status === 204) onResponse();
     });
   }
 
@@ -55,9 +49,17 @@ class WebClient {
     };
 
     fetch(`/todos/todo/${todoID}/task/${taskID}`, request).then((res) => {
-      if (res.status === 204) {
-        onResponse();
-      }
+      if (res.status === 204) onResponse();
     });
+  }
+
+  restoreTodos(onResponse) {
+    fetch("/todos")
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+      })
+      .then(onResponse);
   }
 }

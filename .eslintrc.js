@@ -13,7 +13,6 @@ module.exports = {
     "max-statements": ["error", 18],
     "no-cond-assign": "error",
     "no-empty": "warn",
-    "no-console": "warn",
     "no-implicit-coercion": "warn",
     "no-implicit-globals": "error",
     "no-param-reassign": "error",

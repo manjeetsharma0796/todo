@@ -11,6 +11,7 @@ const main = () => {
   const todos = new Todos();
   const todoStorage = new TodoStorage(fs, STORAGE_PATH);
   const todoController = new TodosController(todos, todoStorage);
+  todoController.start();
   const app = createAndSetupApp(todoController);
   const port = 8000;
 

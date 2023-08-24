@@ -12,15 +12,10 @@ const main = () => {
   const createTodoButton = document.querySelector("#create-todo");
 
   const renderer = new Renderer(todosContainer);
-  const todoAppStorage = new TodoAppStorage();
+
   const todos = new Todos();
   const webClient = new WebClient();
-  const todosController = new TodosController(
-    todos,
-    renderer,
-    todoAppStorage,
-    webClient
-  );
+  const todosController = new TodosController(todos, renderer, webClient);
   setupCreateTodoButton(createTodoButton, todosController);
   todosController.start();
 };

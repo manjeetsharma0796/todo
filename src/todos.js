@@ -40,21 +40,6 @@ class Todos {
     todo.patchTaskStatus(taskID, taskStatus);
   }
 
-  sortTaskAlphabetical(todoID) {
-    const todo = this.#findTodo(todoID);
-    todo.setSortBy("sortAlphabetical");
-  }
-
-  sortTaskByCreation(todoID) {
-    const todo = this.#findTodo(todoID);
-    todo.setSortBy("sortByCreation");
-  }
-
-  sortTaskByCompletion(todoID) {
-    const todo = this.#findTodo(todoID);
-    todo.setSortBy("sortByCompletion");
-  }
-
   restoreTodo(title) {
     this.addTodo(title);
   }
@@ -64,13 +49,6 @@ class Todos {
       const { description, isTaskCompleted } = task;
       this.addTask(description, todoID, isTaskCompleted);
     });
-  }
-
-  getSortedDetails() {
-    return this.#todoList.reduce(
-      (todosDetails, todo) => todosDetails.concat(todo.getSortedDetails()),
-      []
-    );
   }
 
   getDetails() {

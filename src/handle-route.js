@@ -66,13 +66,19 @@ const handleToggleTask = (req, res) => {
     onSuccess: () => onSuccess(req, res, 204),
     onError: () => onError(req, res),
   };
-  
+
   todoController.patchTaskStatus(
     parseInt(taskID),
     parseInt(todoID),
     req.body.isTaskCompleted,
     responseHandlers
   );
+};
+
+const handleRestore = (req, res) => {
+  const { todoController } = req.app;
+  const todoDetails = todoController.getDetails();
+  res.json(todoDetails);
 };
 
 const createAndSetupApp = (todoController) => {
@@ -82,6 +88,7 @@ const createAndSetupApp = (todoController) => {
   app.use(logRequest);
   app.use(express.json());
 
+  app.get("/todos", handleRestore);
   app.get("/", serveHomePage);
   app.post("/todos/todo", handleAddTodo);
   app.post("/todos/todo/:todoID/task", handleAddTask);
