@@ -1,2 +1,4 @@
 node_modules
 todos.json
+.nycrc.json
+.nyc_output
