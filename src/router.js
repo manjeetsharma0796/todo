@@ -11,7 +11,7 @@ const {
 const { handleAddTodo } = require("./handlers/todo-handler");
 const { handleRestore } = require("./handlers/todos-handler");
 
-const createAndSetupApp = (todoController) => {
+const createApp = (todoController) => {
   const app = express();
   app.todoController = todoController;
 
@@ -29,4 +29,4 @@ const createAndSetupApp = (todoController) => {
   return app;
 };
 
-module.exports = { createAndSetupApp };
+module.exports = { createApp };
