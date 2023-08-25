@@ -1,10 +1,11 @@
 const fs = require("fs");
 
-const { Todos } = require("./src/todos");
-const { TodoStorage } = require("./src/todo-storage");
-const { TodosController } = require("./src/todos-controller");
+const { Todos } = require("./src/models/todos");
+const { TodoStorage } = require("./src/models/todo-storage");
+const { TodosController } = require("./src/models/todos-controller");
 
 const { createAndSetupApp } = require("./src/handle-route");
+
 const STORAGE_PATH = "./todos.json";
 
 const main = () => {
