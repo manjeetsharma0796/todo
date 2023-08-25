@@ -40,10 +40,6 @@ class Todos {
     todo.patchTaskStatus(taskID, taskStatus);
   }
 
-  restoreTodo(title) {
-    this.addTodo(title);
-  }
-
   restoreTasks(tasks, todoID) {
     tasks.forEach((task) => {
       const { description, isTaskCompleted } = task;

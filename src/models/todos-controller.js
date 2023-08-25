@@ -10,7 +10,7 @@ class TodosController {
   #restoreTodos(todosDetails) {
     todosDetails.forEach((todo) => {
       const { todoID, title, tasks } = todo;
-      this.#todos.restoreTodo(title, todoID);
+      this.#todos.addTodo(title);
       this.#todos.restoreTasks(tasks, todoID);
     });
   }
