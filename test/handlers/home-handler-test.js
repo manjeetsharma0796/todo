@@ -3,7 +3,7 @@ const request = require("supertest");
 
 const { createApp } = require("../../src/router");
 
-describe("serveHomePage", () => {
+describe("GET /", () => {
   it("should serve home page", (_, done) => {
     const app = createApp();
 

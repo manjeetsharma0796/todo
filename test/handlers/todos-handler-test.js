@@ -9,7 +9,7 @@ const { TodosController } = require("../../src/models/todos-controller");
 
 const STORAGE_PATH = "./todos.json";
 
-describe("handleRestore", () => {
+describe("GET /todos", () => {
   it("should handle and restore", (_, done) => {
     const todos = new Todos();
     const todoStorage = new TodoStorage(fs, STORAGE_PATH);

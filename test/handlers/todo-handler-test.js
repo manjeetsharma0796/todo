@@ -19,9 +19,9 @@ const setupController = () => {
   app = createApp(todosController);
 };
 
-describe("handleAddTodo", async () => {
+describe("POST /todos/todo", async () => {
   beforeEach(() => setupController());
-  
+
   it("should handle and add new todo by provided title", (_, done) => {
     request(app)
       .post("/todos/todo")
