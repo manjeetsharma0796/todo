@@ -11,9 +11,9 @@ const {
 const { handleAddTodo } = require("./handlers/todo-handler");
 const { handleRestore } = require("./handlers/todos-handler");
 
-const createApp = (todoController) => {
+const createApp = (todosController) => {
   const app = express();
-  app.todoController = todoController;
+  app.todosController = todosController;
 
   app.use(logRequest);
   app.use(express.json());

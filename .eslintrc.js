@@ -5,7 +5,7 @@ module.exports = {
 
   rules: {
     "no-unused-private-class-members": "error",
-    // "no-unused-vars": "error",
+    "no-unused-vars": "error",
     "semi": ["error", "always", { omitLastInOneLineBlock: true }],
     "quotes": ["error", "double"],
     "indent": ["error", 2, { SwitchCase: 1 }],

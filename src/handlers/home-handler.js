@@ -1,7 +1,7 @@
-const ROOT = "/Users/manjeet/workspace/html/assignment/todo-manjeetsharma0796";
+const ROOT_DIR = process.env.PWD;
 
 const serveHomePage = (_, res) => {
-  const filePath = `${ROOT}/public/index.html`;
+  const filePath = `${ROOT_DIR}/public/index.html`;
   res.sendFile(filePath);
 };
 

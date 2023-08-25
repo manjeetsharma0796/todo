@@ -1,7 +1,6 @@
 const { describe, it } = require("node:test");
 const assert = require("assert");
 const { Todo } = require("../../src/models/todo");
-const exp = require("constants");
 
 describe("Todo", () => {
   describe("getDetails", () => {

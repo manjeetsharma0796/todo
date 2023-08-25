@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 class TodosController {
   #todos;
   #renderer;
@@ -83,6 +84,4 @@ class TodosController {
       this.#renderer.renderTodo(this.#todos.getSortedDetails());
     });
   }
-
- 
 }

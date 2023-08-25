@@ -1,6 +1,6 @@
 const handleRestore = (req, res) => {
-  const { todoController } = req.app;
-  const todoDetails = todoController.getDetails();
+  const { todosController } = req.app;
+  const todoDetails = todosController.getDetails();
 
   res.json(todoDetails);
 };
