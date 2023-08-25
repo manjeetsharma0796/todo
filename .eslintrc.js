@@ -37,7 +37,7 @@ module.exports = {
     "max-params": ["error", 5],
     "no-use-before-define": ["error"],
     "no-this-before-super": ["error"],
-    "max-nested-callbacks": ["error", { max: 2 }],
+    "max-nested-callbacks": ["error", { max: 3 }],
     "no-else-return": "error",
     "object-shorthand": "error",
     "prefer-template": "warn",
