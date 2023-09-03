@@ -258,4 +258,12 @@ const  = handlers.find(handler => {
 handler(request, response)
 
 -------------
-h
+need to add test cases for
+1. todo handler
+2. task handler
+
+model testing is left 
+1. controller 
+2. storage
+
+review code

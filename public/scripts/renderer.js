@@ -31,11 +31,12 @@ class Renderer {
 
     const newTaskButton = document.createElement("input");
     newTaskButton.type = "button";
-    newTaskButton.value = "Add Task";
+    newTaskButton.value = "＋";
     newTaskButton.id = "add-task";
     newTaskButton.className = "input";
     newTaskButton.onclick = () => {
       const description = newTaskInput.value;
+      if (!description) return;
       this.listeners.addTask(description, todoID);
     };
 
@@ -108,7 +109,7 @@ class Renderer {
   #createDeleteButton() {
     const deleteButton = document.createElement("input");
     deleteButton.type = "button";
-    deleteButton.value = "delete";
+    deleteButton.value = "⤫";
 
     return deleteButton;
   }
